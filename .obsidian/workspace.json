@@ -1,0 +1,231 @@
+{
+  "main": {
+    "id": "4a283fcf061aaa5e",
+    "type": "split",
+    "children": [
+      {
+        "id": "6a020fc013123b64",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "114b11b5f9ad5db8",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "log.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "log"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "79e61b29883bb1ab",
+    "type": "split",
+    "children": [
+      {
+        "id": "5c74d122cbd47580",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "dafcd40c15b1a9c6",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": true
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "6b7b95fbaa030a36",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "f2b8969258f1ecea",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "32abe63ccaf30d63",
+    "type": "split",
+    "children": [
+      {
+        "id": "1bdd1c6bfc0d444d",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "f7b388a1d9b45ba5",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "log.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for log"
+            }
+          },
+          {
+            "id": "82df4afd506b2ab5",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "log.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from log"
+            }
+          },
+          {
+            "id": "6d72ecbcb42afcbd",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "7fa47f3ac0ee712e",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "All properties"
+            }
+          },
+          {
+            "id": "af74caa7ad788f6b",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "log.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of log"
+            }
+          },
+          {
+            "id": "6802a97b0a82b2f5",
+            "type": "leaf",
+            "state": {
+              "type": "git-view",
+              "state": {},
+              "icon": "git-pull-request",
+              "title": "Source Control"
+            }
+          }
+        ],
+        "currentTab": 5
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false,
+      "obsidian-git:Open Git source control": false
+    }
+  },
+  "active": "114b11b5f9ad5db8",
+  "lastOpenFiles": [
+    "wiki/engineering/pyright.md",
+    "wiki/engineering/ruff.md",
+    "wiki/engineering/Python工具链.md",
+    "wiki/engineering/mypy-uv.md",
+    "wiki/engineering/mypy.md",
+    "wiki/engineering/isort-uv.md",
+    "wiki/engineering/isort.md",
+    "wiki/engineering/black-uv.md",
+    "wiki/engineering/black.md",
+    "wiki/engineering/uv.md",
+    "wiki/engineering/Poetry.md",
+    "log.md",
+    "wiki/metaflow/Outerbounds-配置与CLI.md",
+    "wiki/metaflow/Outerbounds-特有装饰器.md",
+    "wiki/metaflow/Outerbounds-依赖管理.md",
+    "wiki/metaflow/Outerbounds-部署与调度.md",
+    "wiki/metaflow/Outerbounds-认证与权限.md",
+    "wiki/metaflow/Outerbounds-Workstations.md",
+    "wiki/metaflow/Outerbounds-Perimeter.md",
+    "wiki/metaflow/Outerbounds概览.md",
+    "wiki/metaflow/Outerbounds平台.md",
+    "index.md",
+    "wiki/metaflow/Metaflow工作流框架.md",
+    "wiki/aws/AWS与Metaflow.md",
+    "wiki/AWS与Metaflow.md",
+    "wiki/ui-ux",
+    "wiki/engineering",
+    "wiki/aws",
+    "wiki/metaflow",
+    "wiki/Metaflow工作流框架.md",
+    "wiki"
+  ]
+}
