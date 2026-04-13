@@ -12,3 +12,17 @@
 - AWS 账户/IAM 具体配置
 - 更多 Metaflow 装饰器用法
 - 其他工作领域页面
+
+## [2026-04-13] ingest | AWS 核心服务独立页面
+
+为 5 个 AWS 重点服务各创建独立 wiki 页面，从 AWS与Metaflow 中拆分出通用知识。
+
+**创建页面：**
+- `wiki/aws/S3.md` — 对象存储、存储类别、权限、加密、版本控制、生命周期、性能优化
+- `wiki/aws/Lambda.md` — 无服务器计算、触发方式、Layer、并发控制、冷启动、重试
+- `wiki/aws/EventBridge.md` — 事件总线、规则匹配、Scheduler、Pipes、Archive/Replay
+- `wiki/aws/CloudWatch.md` — 指标、日志、告警、Logs Insights、EMF、异常检测
+- `wiki/aws/CloudTrail.md` — API 审计、事件类型、Lake 查询、安全调查
+
+**更新页面：**
+- `index.md` — 添加 5 个 AWS 服务页面索引
