@@ -150,13 +150,12 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Welcome.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of Welcome"
+              "title": "Outline"
             }
           },
           {
@@ -188,8 +187,9 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "06732c3ccbde809f",
+  "active": "e5c4b9d64e3dae8c",
   "lastOpenFiles": [
+    "Welcome.md",
     "CLAUDE.md",
     "wiki/metaflow/Outerbounds概览.md",
     "wiki/metaflow/Outerbounds-配置与CLI.md",
@@ -214,7 +214,6 @@
     "wiki/aws",
     "wiki",
     "log.md",
-    "index.md",
-    "Welcome.md"
+    "index.md"
   ]
 }
