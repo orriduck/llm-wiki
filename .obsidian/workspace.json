@@ -187,8 +187,10 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "e5c4b9d64e3dae8c",
+  "active": "69e905d4bf441261",
   "lastOpenFiles": [
+    "index.md",
+    "log.md",
     "Welcome.md",
     "CLAUDE.md",
     "wiki/metaflow/Outerbounds概览.md",
@@ -212,8 +214,6 @@
     "wiki/metaflow",
     "wiki/engineering",
     "wiki/aws",
-    "wiki",
-    "log.md",
-    "index.md"
+    "wiki"
   ]
 }
