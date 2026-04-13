@@ -4,21 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "6a020fc013123b64",
+        "id": "f0bf60d6ee52b4ea",
         "type": "tabs",
         "children": [
           {
-            "id": "114b11b5f9ad5db8",
+            "id": "601ab587f3141bd5",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "split-diff-view",
               "state": {
-                "file": "log.md",
-                "mode": "source",
-                "source": false
+                "aFile": ".obsidian/workspace.json",
+                "bFile": ".obsidian/workspace.json",
+                "aRef": ""
               },
-              "icon": "lucide-file",
-              "title": "log"
+              "icon": "diff",
+              "title": "Diff: workspace.json  (Working Tree)"
             }
           }
         ]
@@ -194,7 +194,7 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "114b11b5f9ad5db8",
+  "active": "601ab587f3141bd5",
   "lastOpenFiles": [
     "wiki/engineering/pyright.md",
     "wiki/engineering/ruff.md",
