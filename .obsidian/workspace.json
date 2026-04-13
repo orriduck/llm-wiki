@@ -1,24 +1,20 @@
 {
   "main": {
-    "id": "4a283fcf061aaa5e",
+    "id": "5bf448eed9c83289",
     "type": "split",
     "children": [
       {
-        "id": "f0bf60d6ee52b4ea",
+        "id": "b9279eef4beb6b85",
         "type": "tabs",
         "children": [
           {
-            "id": "601ab587f3141bd5",
+            "id": "69e905d4bf441261",
             "type": "leaf",
             "state": {
-              "type": "split-diff-view",
-              "state": {
-                "aFile": ".obsidian/workspace.json",
-                "bFile": ".obsidian/workspace.json",
-                "aRef": ""
-              },
-              "icon": "diff",
-              "title": "Diff: workspace.json  (Working Tree)"
+              "type": "graph",
+              "state": {},
+              "icon": "lucide-git-fork",
+              "title": "Graph view"
             }
           }
         ]
@@ -27,28 +23,28 @@
     "direction": "vertical"
   },
   "left": {
-    "id": "79e61b29883bb1ab",
+    "id": "3bbb3a7a9b56e3b2",
     "type": "split",
     "children": [
       {
-        "id": "5c74d122cbd47580",
+        "id": "492c226bf893fb30",
         "type": "tabs",
         "children": [
           {
-            "id": "dafcd40c15b1a9c6",
+            "id": "06732c3ccbde809f",
             "type": "leaf",
             "state": {
               "type": "file-explorer",
               "state": {
                 "sortOrder": "alphabetical",
-                "autoReveal": true
+                "autoReveal": false
               },
               "icon": "lucide-folder-closed",
               "title": "Files"
             }
           },
           {
-            "id": "6b7b95fbaa030a36",
+            "id": "3179e5bf8a8d45d9",
             "type": "leaf",
             "state": {
               "type": "search",
@@ -65,7 +61,7 @@
             }
           },
           {
-            "id": "f2b8969258f1ecea",
+            "id": "9b185e70e7e4765a",
             "type": "leaf",
             "state": {
               "type": "bookmarks",
@@ -81,20 +77,19 @@
     "width": 300
   },
   "right": {
-    "id": "32abe63ccaf30d63",
+    "id": "64a2edf94b766c3d",
     "type": "split",
     "children": [
       {
-        "id": "1bdd1c6bfc0d444d",
+        "id": "fb136ab0b864f474",
         "type": "tabs",
         "children": [
           {
-            "id": "f7b388a1d9b45ba5",
+            "id": "abe573437b323e1c",
             "type": "leaf",
             "state": {
               "type": "backlink",
               "state": {
-                "file": "log.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,25 +99,24 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for log"
+              "title": "Backlinks"
             }
           },
           {
-            "id": "82df4afd506b2ab5",
+            "id": "68c0e605c117d75f",
             "type": "leaf",
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "log.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from log"
+              "title": "Outgoing links"
             }
           },
           {
-            "id": "6d72ecbcb42afcbd",
+            "id": "27ce2ec5c5db9f07",
             "type": "leaf",
             "state": {
               "type": "tag",
@@ -137,7 +131,7 @@
             }
           },
           {
-            "id": "7fa47f3ac0ee712e",
+            "id": "00b4c0ed6e6b3d9e",
             "type": "leaf",
             "state": {
               "type": "all-properties",
@@ -151,22 +145,22 @@
             }
           },
           {
-            "id": "af74caa7ad788f6b",
+            "id": "170d0b1d4958a705",
             "type": "leaf",
             "state": {
               "type": "outline",
               "state": {
-                "file": "log.md",
+                "file": "Welcome.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of log"
+              "title": "Outline of Welcome"
             }
           },
           {
-            "id": "6802a97b0a82b2f5",
+            "id": "e5c4b9d64e3dae8c",
             "type": "leaf",
             "state": {
               "type": "git-view",
@@ -194,38 +188,33 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "601ab587f3141bd5",
+  "active": "06732c3ccbde809f",
   "lastOpenFiles": [
-    "wiki/engineering/pyright.md",
-    "wiki/engineering/ruff.md",
-    "wiki/engineering/Python工具链.md",
-    "wiki/engineering/mypy-uv.md",
-    "wiki/engineering/mypy.md",
-    "wiki/engineering/isort-uv.md",
-    "wiki/engineering/isort.md",
-    "wiki/engineering/black-uv.md",
-    "wiki/engineering/black.md",
-    "wiki/engineering/uv.md",
-    "wiki/engineering/Poetry.md",
-    "log.md",
+    "CLAUDE.md",
+    "wiki/metaflow/Outerbounds概览.md",
     "wiki/metaflow/Outerbounds-配置与CLI.md",
-    "wiki/metaflow/Outerbounds-特有装饰器.md",
-    "wiki/metaflow/Outerbounds-依赖管理.md",
     "wiki/metaflow/Outerbounds-部署与调度.md",
     "wiki/metaflow/Outerbounds-认证与权限.md",
+    "wiki/metaflow/Outerbounds-特有装饰器.md",
+    "wiki/metaflow/Outerbounds-依赖管理.md",
     "wiki/metaflow/Outerbounds-Workstations.md",
     "wiki/metaflow/Outerbounds-Perimeter.md",
-    "wiki/metaflow/Outerbounds概览.md",
-    "wiki/metaflow/Outerbounds平台.md",
-    "index.md",
     "wiki/metaflow/Metaflow工作流框架.md",
+    "wiki/engineering/uv.md",
+    "wiki/engineering/ruff.md",
+    "wiki/engineering/pyright.md",
+    "wiki/engineering/mypy.md",
+    "wiki/engineering/isort.md",
+    "wiki/engineering/black.md",
+    "wiki/engineering/black-uv.md",
+    "wiki/engineering/Poetry.md",
     "wiki/aws/AWS与Metaflow.md",
-    "wiki/AWS与Metaflow.md",
-    "wiki/ui-ux",
+    "wiki/metaflow",
     "wiki/engineering",
     "wiki/aws",
-    "wiki/metaflow",
-    "wiki/Metaflow工作流框架.md",
-    "wiki"
+    "wiki",
+    "log.md",
+    "index.md",
+    "Welcome.md"
   ]
 }
