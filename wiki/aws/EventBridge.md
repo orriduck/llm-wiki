@@ -2,7 +2,7 @@
 
 > 无服务器事件总线，连接应用、AWS 服务和 SaaS 应用的事件驱动架构核心。
 > 与 [[Lambda]]、[[CloudWatch]]、[[CloudTrail]] 紧密集成。
-> Metaflow 中用于触发 Step Functions 定时调度，见 [[AWS与Metaflow]]。
+> Metaflow 中用于触发 Step Functions 定时调度，见 [[Metaflow工作流框架]]。
 
 ## 目录
 

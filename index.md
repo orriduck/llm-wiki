@@ -18,7 +18,6 @@
 
 | 页面 | 摘要 |
 |------|------|
-| [[AWS与Metaflow]] | AWS 架构（S3/Batch/ECR/Step Functions）、IAM 权限、Outerbounds vs 自建 |
 | [[S3]] | 对象存储、存储类别、权限控制、加密、版本控制、生命周期、事件通知、性能优化 |
 | [[Lambda]] | 无服务器计算、触发方式、Layer、并发控制、冷启动优化、错误处理与重试 |
 | [[EventBridge]] | 事件总线、规则与目标、模式匹配、Scheduler、Pipes、Archive/Replay、跨账户 |

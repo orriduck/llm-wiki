@@ -2,7 +2,7 @@
 
 > 无服务器计算服务，按调用次数和执行时间付费，无需管理服务器。
 > 与 [[EventBridge]]、[[CloudWatch]]、[[CloudTrail]] 深度集成。
-> Metaflow 中 Step Functions 的轻量 step 可编译为 Lambda 执行，见 [[AWS与Metaflow]]。
+> Metaflow 中 Step Functions 的轻量 step 可编译为 Lambda 执行，见 [[Metaflow工作流框架]]。
 
 ## 目录
 

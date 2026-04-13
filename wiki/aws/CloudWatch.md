@@ -4,7 +4,7 @@
 > [[Lambda]] 日志和指标自动写入 CloudWatch。
 > [[EventBridge]] 可基于 CloudWatch 告警触发动作。
 > [[CloudTrail]] 的 API 审计日志可投递到 CloudWatch Logs。
-> Metaflow Batch job 日志写入 CloudWatch Logs，见 [[AWS与Metaflow]]。
+> Metaflow Batch job 日志写入 CloudWatch Logs，见 [[Metaflow工作流框架]]。
 
 ## 目录
 
