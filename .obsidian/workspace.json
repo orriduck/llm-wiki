@@ -11,10 +11,14 @@
             "id": "69e905d4bf441261",
             "type": "leaf",
             "state": {
-              "type": "graph",
-              "state": {},
-              "icon": "lucide-git-fork",
-              "title": "Graph view"
+              "type": "split-diff-view",
+              "state": {
+                "aFile": ".obsidian/app.json",
+                "bFile": ".obsidian/app.json",
+                "aRef": ""
+              },
+              "icon": "diff",
+              "title": "Diff: app.json  (Working Tree)"
             }
           }
         ]
@@ -90,6 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "wiki/metaflow/Outerbounds-依赖管理.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -99,7 +104,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks"
+              "title": "Backlinks for Outerbounds-依赖管理"
             }
           },
           {
@@ -108,11 +113,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "wiki/metaflow/Outerbounds-依赖管理.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links"
+              "title": "Outgoing links from Outerbounds-依赖管理"
             }
           },
           {
@@ -150,12 +156,13 @@
             "state": {
               "type": "outline",
               "state": {
+                "file": "wiki/metaflow/Outerbounds-依赖管理.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline"
+              "title": "Outline of Outerbounds-依赖管理"
             }
           },
           {
@@ -189,29 +196,33 @@
   },
   "active": "69e905d4bf441261",
   "lastOpenFiles": [
-    "Untitled.canvas",
+    "wiki/engineering/black-uv.md",
+    "wiki/engineering/black.md",
+    "wiki/metaflow/Outerbounds-依赖管理.md",
+    "wiki/metaflow/Outerbounds-Perimeter.md",
+    "wiki/metaflow/Metaflow工作流框架.md",
+    "wiki/aws/S3.md",
+    "wiki/aws/Lambda.md",
+    "wiki/aws/EventBridge.md",
+    "wiki/aws/CloudWatch.md",
+    "wiki/aws/CloudTrail.md",
     "index.md",
+    "CLAUDE.md",
+    "Untitled.canvas",
     "log.md",
     "Welcome.md",
-    "CLAUDE.md",
     "wiki/metaflow/Outerbounds概览.md",
     "wiki/metaflow/Outerbounds-配置与CLI.md",
     "wiki/metaflow/Outerbounds-部署与调度.md",
     "wiki/metaflow/Outerbounds-认证与权限.md",
     "wiki/metaflow/Outerbounds-特有装饰器.md",
-    "wiki/metaflow/Outerbounds-依赖管理.md",
     "wiki/metaflow/Outerbounds-Workstations.md",
-    "wiki/metaflow/Outerbounds-Perimeter.md",
-    "wiki/metaflow/Metaflow工作流框架.md",
     "wiki/engineering/uv.md",
     "wiki/engineering/ruff.md",
     "wiki/engineering/pyright.md",
     "wiki/engineering/mypy.md",
     "wiki/engineering/isort.md",
-    "wiki/engineering/black.md",
-    "wiki/engineering/black-uv.md",
     "wiki/engineering/Poetry.md",
-    "wiki/aws/AWS与Metaflow.md",
     "wiki/metaflow",
     "wiki/engineering",
     "wiki/aws",
