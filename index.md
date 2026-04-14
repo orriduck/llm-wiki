@@ -36,6 +36,7 @@
 | [[mypy]] | Python 静态类型检查、配置选项、类型注解速查、stub 包、渐进式类型化策略 |
 | [[ruff]] | Rust 编写的极速 linter + formatter，替代 black + isort + flake8，uvx 直接运行 |
 | [[pyright]] | 微软静态类型检查器（Pylance 底层），比 mypy 快 3-5 倍，渐进式 strict 模式 |
+| [[fish]] | 友好交互式 shell：开箱即用自动建议/语法高亮，安装、设为默认 shell、Fisher 插件管理 |
 
 ## UI / UX
 

@@ -13,6 +13,18 @@
 - 更多 Metaflow 装饰器用法
 - 其他工作领域页面
 
+## [2026-04-14] ingest | fish shell 使用指南
+
+新增 fish shell 工具页面，涵盖安装、设置默认 shell、配置、语法速查、插件管理。
+
+**创建页面：**
+- `wiki/engineering/fish.md` — fish shell 优势、安装（macOS/Linux）、chsh 设为默认 shell、config.fish 配置、语法速查（变量/条件/循环/函数）、abbr 缩写、Fisher 插件管理器、常用插件（Tide/Starship/fzf.fish/z.fish）、与 bash 兼容性说明
+
+**更新页面：**
+- `index.md` — 添加 fish shell 页面索引
+
+---
+
 ## [2026-04-13] ingest | AWS 核心服务独立页面
 
 为 5 个 AWS 重点服务各创建独立 wiki 页面，从 AWS与Metaflow 中拆分出通用知识。
