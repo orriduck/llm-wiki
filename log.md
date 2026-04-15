@@ -1,5 +1,15 @@
 # Wiki 日志
 
+## [2026-04-15] ingest | S3 → Lambda 触发器完整指南
+
+根据对话中的 AWS 问答，结合官方文档和网络搜索整理，新增 S3 Lambda 触发器专题页面。
+
+**创建页面：**
+- `wiki/aws/S3-Lambda触发器.md` — 触发机制、所有事件类型、完整 Event JSON 结构、多文件上传行为、权限配置（Console vs CLI 差异）、错误处理与重试、常见陷阱（循环触发/Key 解码/跨 Region）、进阶方案（EventBridge/SQS）、Lambda 代码示例（转发 endpoint / 读文件内容 / 幂等处理）
+
+**更新页面：**
+- `index.md` — 添加 S3-Lambda触发器页面索引
+
 ## [2026-04-13] init | 初始化 wiki
 
 从 Claude Code 记忆中提取工作相关内容，建立初始 wiki 结构。
