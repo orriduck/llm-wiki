@@ -39,6 +39,14 @@
 | [[pyright]] | 微软静态类型检查器（Pylance 底层），比 mypy 快 3-5 倍，渐进式 strict 模式 |
 | [[fish]] | 友好交互式 shell：开箱即用自动建议/语法高亮，安装、设为默认 shell、Fisher 插件管理 |
 
+## AI 智能体
+
+| 页面 | 摘要 |
+|------|------|
+| [[OpenClaw概览]] | 开源执行型 Agent 框架：Gateway 架构、SOUL.md/HEARTBEAT.md 配置文件、定时调度、WhatsApp/Discord 集成、ClawHub 插件生态、多 Agent 路线图 |
+| [[Claude-Managed-Agents]] | Anthropic 托管 Agent 服务（2026-04）：Agent Teams、Subagents、Claude Cowork 计算机控制、Dispatch 定时任务、$0.08/小时计费 |
+| [[OpenClaw-vs-Claude]] | OpenClaw（开源框架）vs Claude（商业 LLM + Agent 服务）全面对比：定位、架构关系、成本、适用场景、Anthropic 跟进动作 |
+
 ## UI / UX
 
 | 页面 | 摘要 |

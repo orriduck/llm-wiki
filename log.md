@@ -1,5 +1,19 @@
 # Wiki 日志
 
+## [2026-04-15] ingest | OpenClaw vs Claude 智能体笔记
+
+搜集 OpenClaw 开源框架与 Anthropic Claude Managed Agents 最新资料，新建 AI 智能体分类，创建 3 篇 wiki 页面。
+
+**创建页面：**
+- `wiki/ai-agents/OpenClaw概览.md` — 背景发展、Gateway 架构、SOUL.md/HEARTBEAT.md 配置文件系统、Heartbeat 自然语言调度、多平台集成（WhatsApp/Discord/Telegram）、ClawHub 插件生态（15,000+ AgentSkills）、模型无关性、v4.0 多 Agent 路线图、OpenClaw Foundation 治理
+- `wiki/ai-agents/Claude-Managed-Agents.md` — 2026-04-08 发布背景、托管执行环境与安全沙盒、Agent Teams + Subagents 协作模式、Claude Cowork 计算机控制、Dispatch 手机远程任务（研究预览）、定时任务配置、$0.08/会话小时计费、Notion/Asana/Sentry 早期用户案例
+- `wiki/ai-agents/OpenClaw-vs-Claude.md` — 定位对比表、执行模式差异、架构关系（互补非竞争）、Anthropic 跟进时间线、场景选型指南、成本对比模型、关键洞察（开源探路商业收割）
+
+**更新页面：**
+- `index.md` — 新增"AI 智能体"分类，添加 3 个页面索引
+
+---
+
 ## [2026-04-15] ingest | S3 → Lambda 触发器完整指南
 
 根据对话中的 AWS 问答，结合官方文档和网络搜索整理，新增 S3 Lambda 触发器专题页面。
