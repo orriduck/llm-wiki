@@ -48,6 +48,12 @@
 | [[Claude-Managed-Agents]] | Anthropic 托管 Agent 服务（2026-04）：Agent Teams、Subagents、Claude Cowork 计算机控制、Dispatch 定时任务、$0.08/小时计费 |
 | [[OpenClaw-vs-Claude]] | OpenClaw（开源框架）vs Claude（商业 LLM + Agent 服务）全面对比：定位、架构关系、成本、适用场景、Anthropic 跟进动作 |
 
+## 职业发展
+
+| 页面 | 摘要 |
+|------|------|
+| [[如何充分利用一对一]] | 与经理一对一的最佳实践：七条核心原则 + L1–L8 各级别具体话题指导，关系从指导到战略伙伴的演变 |
+
 ## UI / UX
 
 | 页面 | 摘要 |
