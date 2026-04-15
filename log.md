@@ -1,5 +1,17 @@
 # Wiki 日志
 
+## [2026-04-15] ingest | Claude Code 插件与 MCP 生态
+
+根据实际操作会话（d2ee5346-3090-4cd4-b6cc-547a52485680），整理 Claude Code 插件管理工作流、superpowers/github 插件安装、Chrome DevTools MCP 工具体系。
+
+**创建页面：**
+- `wiki/engineering/Claude-Code插件与MCP.md` — 插件管理命令、superpowers/github 插件、Skills 体系、Chrome DevTools MCP 工具速查、标准操作流程
+
+**更新页面：**
+- `index.md` — 在"工程规范 / 架构"分类添加 Claude-Code插件与MCP 索引
+
+---
+
 ## [2026-04-15] ingest | OpenClaw vs Claude 智能体笔记
 
 搜集 OpenClaw 开源框架与 Anthropic Claude Managed Agents 最新资料，新建 AI 智能体分类，创建 3 篇 wiki 页面。
