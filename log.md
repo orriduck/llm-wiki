@@ -85,6 +85,20 @@
 - 更多 Metaflow 装饰器用法
 - 其他工作领域页面
 
+## [2026-04-16] ingest | Python PII 检测库对比
+
+研究并整理主流 Python PII（个人身份信息）检测库横向对比页面。
+
+**创建页面：**
+- `wiki/engineering/python-pii库对比.md` — 7 个主流库的详细对比，覆盖使用难度、可扩展性、检测准确度、支持的 PII 类型、多语言支持、维护状态；含快速选型表、综合对比表、多语言中文适配说明
+
+**覆盖库：** Microsoft Presidio、scrubadub、DataFog、PIICatcher、detect-secrets、pii-masker（HydroXai）、pii-codex
+
+**更新页面：**
+- `index.md` — 添加 python-pii库对比 条目
+
+---
+
 ## [2026-04-14] ingest | fish shell 使用指南
 
 新增 fish shell 工具页面，涵盖安装、设置默认 shell、配置、语法速查、插件管理。

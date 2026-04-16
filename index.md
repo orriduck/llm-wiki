@@ -40,6 +40,7 @@
 | [[pyright]] | 微软静态类型检查器（Pylance 底层），比 mypy 快 3-5 倍，渐进式 strict 模式 |
 | [[fish]] | 友好交互式 shell：开箱即用自动建议/语法高亮，安装、设为默认 shell、Fisher 插件管理 |
 | [[Claude-Code插件与MCP]] | Claude Code 插件管理工作流、superpowers/github/chrome-devtools-mcp 插件、Skills 体系、MCP 工具速查 |
+| [[python-pii库对比]] | Python PII 检测库横向对比：Presidio、scrubadub、DataFog、PIICatcher、detect-secrets、pii-masker 等，覆盖使用难度、扩展性、准确度、支持范围 |
 
 ## AI 智能体
 
