@@ -1,5 +1,19 @@
 # Wiki 日志
 
+## [2026-04-16] ingest | Terraform & OpenTofu 系列文章
+
+整理 Terraform 与 OpenTofu 的完整知识体系，包括基础使用、优势对比及迁移指南，新建 IaC 分类。
+
+**创建页面：**
+- `wiki/iac/Terraform基础与AWS部署.md` — HCL 核心概念（provider/resource/state/variable/module）、核心工作流（init/plan/apply/destroy）、S3/EC2/Lambda/RDS 完整 AWS 部署示例、项目结构最佳实践、常用命令速查
+- `wiki/iac/OpenTofu简介与优势.md` — BSL 许可证变更背景、MPL 2.0 vs BSL 对比、Linux Foundation 治理模式、原生 state 加密特性（AES-GCM/AWS KMS）、provider 自定义函数、与 Terraform 功能对比表、生态工具支持（Terragrunt/Atlantis/Checkov 等）
+- `wiki/iac/Terraform到OpenTofu迁移.md` — 迁移前检查清单、多平台安装方式（Homebrew/APT/tofuenv）、state 备份与验证、tofu init 流程、CI/CD 更新（GitHub Actions/Atlantis）、Terraform Cloud 迁移、state 加密启用、回滚方案、迁移复杂度矩阵
+
+**更新页面：**
+- `index.md` — 新增"基础设施即代码（IaC）"分类，添加 3 个页面索引
+
+---
+
 ## [2026-04-15] maintain | 整理与隐私清洗
 
 对 `Outerbounds-在Flow外使用IAM角色.md` 进行隐私清洗（移除真实 AWS 账户 ID、内部 URL、公司名称），转为双语格式，添加到 index.md。移除 index 中空的 UI/UX 分类。
