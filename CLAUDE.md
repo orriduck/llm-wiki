@@ -75,4 +75,16 @@ This document is intentionally abstract. It describes the idea, not a specific i
 
 ## Language
 
-All wiki markdown content must be written in Chinese (中文). This includes summaries, entity pages, concept pages, comparisons, logs, and any other generated wiki pages. Source filenames and structural elements (e.g. YAML frontmatter keys, file paths) may remain in English.
+All wiki markdown content must be **bilingual: Chinese (中文) and English side by side**. Every section heading, paragraph, list item, and callout should appear in both languages. Write the Chinese version first, immediately followed by the English translation (or vice versa, consistently). Use a blockquote, italic line, or sub-heading to visually separate the two languages within each section — whichever style you find most readable.
+
+Example section format:
+
+```markdown
+## 核心概念 / Core Concepts
+
+容器镜像是一个只读的模板，包含运行应用所需的代码、运行时、库和配置。
+
+> A container image is a read-only template containing the code, runtime, libraries, and configuration needed to run an application.
+```
+
+This applies to: summaries, entity pages, concept pages, comparisons, logs (`log.md`), and any other generated wiki pages. Source filenames, YAML frontmatter keys, file paths, and code snippets may remain in English only.
