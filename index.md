@@ -49,6 +49,14 @@
 | [[Claude-Managed-Agents]] | Anthropic 托管 Agent 服务（2026-04）：Agent Teams、Subagents、Claude Cowork 计算机控制、Dispatch 定时任务、$0.08/小时计费 |
 | [[OpenClaw-vs-Claude]] | OpenClaw（开源框架）vs Claude（商业 LLM + Agent 服务）全面对比：定位、架构关系、成本、适用场景、Anthropic 跟进动作 |
 
+## 基础设施即代码（IaC）
+
+| 页面 | 摘要 |
+|------|------|
+| [[Terraform基础与AWS部署]] | HCL 核心概念、state/provider/module、S3/EC2/Lambda/RDS 完整部署示例、常用命令速查、项目结构最佳实践 |
+| [[OpenTofu简介与优势]] | BSL 许可证风波背景、MPL 2.0 开源优势、Linux Foundation 治理、原生 state 加密、与 Terraform 功能对比、生态工具支持 |
+| [[Terraform到OpenTofu迁移]] | 迁移前检查清单、安装方式、备份 state、`tofu init` 流程、更新 CI/CD、TFC 后端迁移、回滚方案、迁移复杂度矩阵 |
+
 ## 职业发展
 
 | 页面 | 摘要 |
