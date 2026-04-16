@@ -88,3 +88,21 @@ A container image is a read-only template containing the code, runtime, librarie
 ```
 
 This applies to: summaries, entity pages, concept pages, comparisons, logs (`log.md`), and any other generated wiki pages. Source filenames, YAML frontmatter keys, file paths, and code snippets may remain in English only.
+
+## Privacy & Sensitivity
+
+All distilled notes must be **generalized and scrubbed of sensitive information** before being written to the wiki. The wiki is a shareable artifact — treat every page as if it could be read by anyone.
+
+**Remove or replace:**
+- Real credentials, API keys, tokens, passwords, or secrets of any kind
+- Company-specific internal URLs, hostnames, IP addresses, or internal system names
+- Proprietary configurations tied to a specific organization (e.g. exact IAM policies with real account IDs, internal service names, private S3 bucket names)
+- Personal names, emails, or identifiers of real individuals (other than the wiki owner, if they choose)
+- Anything covered by an NDA or that would constitute a confidentiality breach if shared publicly
+
+**Keep and generalize:**
+- The underlying concept, pattern, or best practice — stripped of company-specific details
+- Code examples with real values replaced by placeholders (e.g. `<your-account-id>`, `example.com`, `YOUR_API_KEY`)
+- Architectural patterns described at a level that applies broadly, not just to one organization
+
+**When in doubt, omit.** If a piece of knowledge cannot be generalized without losing its meaning, skip it rather than risk leaking sensitive information.
