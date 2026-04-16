@@ -1,5 +1,15 @@
 # Wiki 日志
 
+## [2026-04-15] maintain | 整理与隐私清洗
+
+对 `Outerbounds-在Flow外使用IAM角色.md` 进行隐私清洗（移除真实 AWS 账户 ID、内部 URL、公司名称），转为双语格式，添加到 index.md。移除 index 中空的 UI/UX 分类。
+
+**更新页面：**
+- `wiki/metaflow/Outerbounds-在Flow外使用IAM角色.md` — 隐私清洗 + 双语化
+- `index.md` — 添加缺失页面索引，移除空分类
+
+---
+
 ## [2026-04-15] ingest | 如何充分利用一对一
 
 根据公司内部指南整理，涵盖一对一最佳实践及 L1–L8 各级别具体话题指导。

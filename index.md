@@ -13,6 +13,7 @@
 | [[Outerbounds-依赖管理]] | fast-bakery 原理与用法、`@conda`/`@pypi` 在 OB 上的行为、Perimeter Policy 对依赖的影响、自定义镜像 |
 | [[Outerbounds-特有装饰器]] | `@secrets`、`@checkpoint`、`@model`、`@huggingface_hub`、`@kubernetes`（完整参数）、`@gpu_profile`、`@torchrun`、`@metaflow_ray` |
 | [[Outerbounds-配置与CLI]] | `~/.metaflowconfig` 完整字段（OB 版本）、多 profile 管理、`outerbounds` CLI 命令、`METAFLOW_PROFILE` |
+| [[Outerbounds-在Flow外使用IAM角色]] | 在 Flow 外使用 `obp-*-task` 角色访问 AWS 资源的 5 种方法、认证链原理、角色命名规则 |
 
 ## AWS
 
@@ -54,8 +55,3 @@
 |------|------|
 | [[如何充分利用一对一]] | 与经理一对一的最佳实践：七条核心原则 + L1–L8 各级别具体话题指导，关系从指导到战略伙伴的演变 |
 
-## UI / UX
-
-| 页面 | 摘要 |
-|------|------|
-| （待添加） | |
