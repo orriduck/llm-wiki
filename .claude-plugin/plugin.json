@@ -1,0 +1,21 @@
+{
+  "name": "llm-wiki",
+  "version": "0.1.0",
+  "description": "个人知识库 wiki 工作流：每日蒸馏 Claude 会话、查询 wiki、提交 PR",
+  "author": {
+    "name": "orriduck",
+    "url": "https://github.com/orriduck/llm-wiki"
+  },
+  "repository": "https://github.com/orriduck/llm-wiki",
+  "license": "MIT",
+  "keywords": ["wiki", "knowledge-base", "daily-review", "obsidian"],
+  "skills": "./skills/",
+  "commands": ["./commands/wiki-push.md", "./commands/wiki-pr.md"],
+  "userConfig": {
+    "wikiRepoPath": {
+      "description": "llm-wiki 仓库在本地的绝对路径（例如 /Users/alice/llm-wiki）。所有 skill 会用此路径读写 wiki 文件。",
+      "type": "string",
+      "required": true
+    }
+  }
+}
