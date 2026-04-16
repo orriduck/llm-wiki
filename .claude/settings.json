@@ -3,6 +3,7 @@
     "allow": [
       "Bash(git:*)",
       "Bash(gh:*)",
+      "Bash(gh *)",
       "Bash(cd *)",
       "Bash(ls *)",
       "Bash(git pull*)",
