@@ -54,6 +54,68 @@ Reloaded: 6 plugins · 5 skills · 7 agents · 1 hook · 3 plugin MCP servers ·
 
 ---
 
+## Plugin Marketplace & Custom Plugins / 插件市场与自定义插件
+
+Claude Code supports custom plugin distribution through a marketplace mechanism. A plugin repository needs:
+
+> Claude Code 支持通过市场（marketplace）机制分发自定义插件。一个插件仓库需要：
+
+### 仓库结构
+
+```
+my-plugin/
+├── .claude-plugin/
+│   ├── plugin.json          # 插件元数据（名称、描述、版本）
+│   └── marketplace.json     # 市场注册信息
+├── skills/
+│   └── my-skill/
+│       └── SKILL.md         # Skill 定义（prompt + metadata）
+├── agents/
+│   └── my-agent.md          # Agent 定义（model、tools、instructions）
+└── settings.local.json      # 推荐的权限配置
+```
+
+### 关键文件
+
+**`plugin.json`** — 保持最小化：
+
+```json
+{
+  "name": "my-plugin",
+  "description": "What this plugin does",
+  "version": "0.1.0"
+}
+```
+
+> Keep `plugin.json` minimal. Fields like `skills`, `commands`, `userConfig` are not part of the core plugin spec and may cause issues.
+
+**`marketplace.json`** — 让插件可被搜索和安装：
+
+```json
+{
+  "name": "my-plugin",
+  "description": "Plugin description for marketplace listing",
+  "publisher": "your-github-username"
+}
+```
+
+### 安装自定义插件
+
+```bash
+# 1. 添加市场源（GitHub 仓库）
+/plugin marketplace add <github-user>/<repo-name>
+
+# 2. 从市场安装插件
+/plugin install <marketplace-name>@<plugin-name>
+
+# 3. 重载
+/reload-plugins
+```
+
+> Custom plugins are installed from GitHub repositories registered as marketplaces. The marketplace repo is cloned locally to `~/.claude/plugins/marketplaces/`.
+
+---
+
 ## Common Plugins / 常用插件
 
 ### superpowers

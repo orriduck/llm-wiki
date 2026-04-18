@@ -1,5 +1,26 @@
 # Wiki 日志
 
+## [2026-04-18] lizard | 蒸馏过去一周 62 个会话，新增 4 页，更新 1 页
+
+从 2026-04-11 ~ 2026-04-18 的 62 个 Claude 会话中蒸馏知识点。涵盖 Metaflow 数据管道迁移、Lambda 基础设施、Python 包管理、类型系统等主题。
+
+**创建页面：**
+- `wiki/metaflow/Metaflow-FanOut-Join模式.md` — Metaflow fan-out/join 并行数据加载模式、merge_artifacts 用法、PyArrow S3FileSystem 读取、@card 摘要
+- `wiki/aws/Lambda-Layer构建与冷启动.md` — Docker 构建 Lambda Layer（trap 清理）、冷启动从 Secrets Manager 加载配置、Terraform 配置、pre-commit 集成
+- `wiki/engineering/importlib-resources.md` — `importlib.resources.files()` vs `os.path`、__init__.py 要求、Metaflow 远程执行的打包陷阱
+- `wiki/engineering/pydantic-type-coercion.md` — Pydantic 自动类型强制转换（string→date）导致 Parquet schema 变更、str() 回转、管道最佳实践
+
+**更新页面：**
+- `wiki/engineering/Claude-Code插件与MCP.md` — 新增"Plugin Marketplace & Custom Plugins"章节，记录自定义插件的仓库结构、marketplace.json、安装流程
+
+**未单独建页的知识点（内容不够充实）：**
+- Poetry + black + isort 一行式 lint 命令（已有各工具独立页面）
+- fish shell PYTHONPATH 配置（过于简单）
+- PR code review triage 模式（过程性，非知识性）
+- SageMaker → Metaflow 迁移的 `object.__new__()` 跳过 `__init__` 技巧（过于 niche）
+
+---
+
 ## [2026-04-16] ingest | Terraform & OpenTofu 系列文章
 
 整理 Terraform 与 OpenTofu 的完整知识体系，包括基础使用、优势对比及迁移指南，新建 IaC 分类。

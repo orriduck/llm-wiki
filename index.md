@@ -14,6 +14,7 @@
 | [[Outerbounds-特有装饰器]] | `@secrets`、`@checkpoint`、`@model`、`@huggingface_hub`、`@kubernetes`（完整参数）、`@gpu_profile`、`@torchrun`、`@metaflow_ray` |
 | [[Outerbounds-配置与CLI]] | `~/.metaflowconfig` 完整字段（OB 版本）、多 profile 管理、`outerbounds` CLI 命令、`METAFLOW_PROFILE` |
 | [[Outerbounds-在Flow外使用IAM角色]] | 在 Flow 外使用 `obp-*-task` 角色访问 AWS 资源的 5 种方法、认证链原理、角色命名规则 |
+| [[Metaflow-FanOut-Join模式]] | Fan-out/join 并行数据加载模式、merge_artifacts、PyArrow S3FileSystem 读取、@card 摘要 |
 
 ## AWS
 
@@ -25,6 +26,7 @@
 | [[EventBridge]] | 事件总线、规则与目标、模式匹配、Scheduler、Pipes、Archive/Replay、跨账户 |
 | [[CloudWatch]] | 指标、日志、告警、仪表盘、Logs Insights 查询、EMF、异常检测 |
 | [[CloudTrail]] | API 审计日志、事件类型、CloudTrail Lake SQL 查询、安全调查、组织级 Trail |
+| [[Lambda-Layer构建与冷启动]] | Lambda Layer Docker 构建脚本（trap 清理）、冷启动 Secrets Manager 配置加载、Terraform 示例、pre-commit 集成 |
 
 ## 工程规范 / 架构
 
@@ -41,6 +43,8 @@
 | [[fish]] | 友好交互式 shell：开箱即用自动建议/语法高亮，安装、设为默认 shell、Fisher 插件管理 |
 | [[Claude-Code插件与MCP]] | Claude Code 插件管理工作流、superpowers/github/chrome-devtools-mcp 插件、Skills 体系、MCP 工具速查 |
 | [[python-pii库对比]] | Python PII 检测库横向对比：Presidio、scrubadub、DataFog、PIICatcher、detect-secrets、pii-masker 等，覆盖使用难度、扩展性、准确度、支持范围 |
+| [[importlib-resources]] | `importlib.resources.files()` 包内资源定位、vs `os.path` 对比、`__init__.py` 要求、Metaflow 远程执行注意事项 |
+| [[pydantic-type-coercion]] | Pydantic 自动类型强制转换（string→date）、Parquet schema 兼容性陷阱、`str()` 回转、v1/v2 差异 |
 
 ## AI 智能体
 
