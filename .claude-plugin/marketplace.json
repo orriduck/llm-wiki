@@ -1,0 +1,16 @@
+{
+  "name": "llm-wiki",
+  "owner": {
+    "name": "orriduck"
+  },
+  "metadata": {
+    "description": "Personal knowledge base - distill daily work into a bilingual, searchable wiki"
+  },
+  "plugins": [
+    {
+      "name": "llm-wiki",
+      "source": "./",
+      "description": "Personal knowledge base wiki workflow: daily distillation, search, and PR submission"
+    }
+  ]
+}
