@@ -133,7 +133,14 @@ Claude 会读取来源、提取关键信息、写摘要页、更新相关页面�
 
 ```
 llm-wiki/
-├── wiki/              # LLM 生成并维护的 wiki 页面（中文）
+├── .claude-plugin/    # Claude Code 插件配置
+│   ├── plugin.json    # 插件清单
+│   └── marketplace.json # Marketplace 注册
+├── .github/
+│   └── pull_request_template.md # PR 模板
+├── agents/
+│   └── wiki-curator.md # 批量操作 agent（模型：sonnet）
+├── wiki/              # LLM 生成并维护的 wiki 页面
 ├── index.md           # 所有页面的索引，按分类组织
 ├── log.md             # 操作日志（ingest、query、lint 记录）
 ├── CLAUDE.md          # Schema：告诉 LLM wiki 的规范和工作流
@@ -279,7 +286,14 @@ Fills in the PR template (`templates/pr-template.md`) with date, new/updated pag
 
 ```
 llm-wiki/
-├── wiki/              # LLM-generated and maintained wiki pages (Chinese)
+├── .claude-plugin/    # Claude Code plugin configuration
+│   ├── plugin.json    # Plugin manifest
+│   └── marketplace.json # Marketplace registration
+├── .github/
+│   └── pull_request_template.md # PR template
+├── agents/
+│   └── wiki-curator.md # Bulk operations agent (model: sonnet)
+├── wiki/              # LLM-generated and maintained wiki pages
 ├── index.md           # Index of all pages, organized by category
 ├── log.md             # Operation log (ingest, query, lint entries)
 ├── CLAUDE.md          # Schema: tells the LLM the wiki's conventions and workflows
