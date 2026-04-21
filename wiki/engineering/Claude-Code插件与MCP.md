@@ -211,6 +211,75 @@ navigate_page -> wait_for -> take_snapshot -> click/fill (using uid)
 
 ---
 
+## Notable Plugins / 常用插件详解
+
+### claude-hud
+
+在状态栏（statusLine）显示 Claude Code 实时运行状态的插件。
+
+**安装流程：**
+```bash
+/plugin       # 搜索并安装 claude-hud
+/reload-plugins
+/claude-hud:setup    # 初始化，检测 Node 路径并写入 statusLine 配置
+/claude-hud:configure  # 交互式配置显示项
+```
+
+**可配置的显示项：**
+- 工具调用活动（Tools activity）
+- 子代理 + Todo 进度（Agents & Todos）
+- 会话时长 / CLAUDE.md 数量 / MCP 数量（Session info）
+- 会话名称（Session name）
+- Git 分支及文件变更统计（Git file stats 格式：`git:(main* !2 +1 ?3)`）
+
+**布局模式：** `default`（双行）/ `compact`（单行）
+
+---
+
+### llm-wiki
+
+个人知识库插件，将每日 Claude 会话蒸馏为原子笔记，支持搜索和 git 推送。
+
+**安装流程：**
+```bash
+# 1. 添加市场源
+/plugin marketplace add https://github.com/orriduck/llm-wiki
+
+# 2. 安装插件
+/plugin install llm-wiki@llm-wiki
+
+# 3. 重载
+/reload-plugins
+
+# 4. 初始化：设置 wiki 仓库路径
+/llm-wiki:setup
+```
+
+**`/llm-wiki:setup` 做了什么：**
+
+将 `WIKI_REPO_PATH` 写入 `~/.claude/settings.json` 的 `env` 块，使该环境变量在所有 Claude Code 会话中自动生效：
+
+```json
+{
+  "env": {
+    "WIKI_REPO_PATH": "/path/to/your/wiki-repo"
+  }
+}
+```
+
+**核心 Skills：**
+
+| Skill | 功能 |
+|-------|------|
+| `/llm-wiki:lizard` | 蒸馏今日 Claude 会话 → 原子笔记 |
+| `/llm-wiki:wiki-search <词>` | 搜索 wiki 内容 |
+| `/llm-wiki:wiki-push` | 提交并推送 wiki 更新 |
+| `/llm-wiki:wiki-pr` | 创建 Pull Request |
+
+**插件安装位置：** `~/.claude/plugins/cache/<marketplace>/<plugin>/<version>/`
+
+---
+
 ## Notes / 注意事项
 
 - MCP servers may disconnect (`disconnected`); confirm status via `/mcp` before use

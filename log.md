@@ -1,5 +1,18 @@
 # Wiki 日志
 
+## [2026-04-20] lizard | 蒸馏今日 4 个会话，新增 2 页，更新 1 页
+
+从 liveatc-caption 项目开发和 Claude Code 插件配置会话中蒸馏知识点。涵盖 Vue 数字动效、地图死推算动画、claude-hud / llm-wiki 插件配置。
+
+**创建页面：**
+- `wiki/engineering/vue-number-flow.md` — `@number-flow/vue` 数字滚动动效，METAR KPI 卡片集成示例
+- `wiki/engineering/map-dead-reckoning-raf.md` — requestAnimationFrame 地图标记死推算动画，速度阈值 30kt，误差归零机制
+
+**更新页面：**
+- `wiki/engineering/Claude-Code插件与MCP.md` — 新增 claude-hud 和 llm-wiki 插件详细安装配置说明
+
+---
+
 ## [2026-04-18] lizard | 蒸馏过去一周 62 个会话，新增 4 页，更新 1 页
 
 从 2026-04-11 ~ 2026-04-18 的 62 个 Claude 会话中蒸馏知识点。涵盖 Metaflow 数据管道迁移、Lambda 基础设施、Python 包管理、类型系统等主题。

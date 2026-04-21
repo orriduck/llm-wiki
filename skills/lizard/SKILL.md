@@ -10,15 +10,33 @@ argument-hint: "[topic-filter]"
 
 你是一个知识蒸馏专家。你的任务是：读取今天所有 Claude 会话的内容，提取其中有价值的、可复用的知识点，整理为符合 llm-wiki 规范的原子笔记。
 
-## 第一步：确认 wiki 路径
+## 第一步：检测 wiki 路径并确保 git 就绪
 
-检查环境变量 `$WIKI_REPO_PATH` 是否已设置：
+从 `~/.claude/plugins/installed_plugins.json` 自动获取安装路径：
 
 ```bash
-echo "${WIKI_REPO_PATH:-未设置}"
+python3 -c "
+import json, os
+p = os.path.expanduser('~/.claude/plugins/installed_plugins.json')
+data = json.load(open(p))
+for key, entries in data.get('plugins', {}).items():
+    if 'llm-wiki' in key:
+        print(entries[-1]['installPath'])
+        break
+"
 ```
 
-若未设置，提示用户先运行 `/setup`，然后停止。
+将输出记为 `WIKI_PATH`，后续所有步骤都使用此路径。
+
+若找不到，告知用户重新安装插件，然后停止。
+
+确保 git 仓库已初始化：
+
+```bash
+if [ ! -d "<WIKI_PATH>/.git" ]; then
+  cd "<WIKI_PATH>" && git init && git remote add origin https://github.com/orriduck/llm-wiki.git && git fetch origin && git checkout -b main && git reset --mixed origin/main
+fi
+```
 
 ## 第二步：获取今日会话内容
 
@@ -32,7 +50,7 @@ from datetime import date
 today = date.today().isoformat()
 results = []
 pattern = os.path.expanduser('~/.claude/projects/**/*.jsonl')
-files = glob.glob(pattern, recursive=True)
+files = [f for f in glob.glob(pattern, recursive=True) if '/subagents/' not in f]
 
 for f in sorted(files):
     try:
@@ -44,23 +62,26 @@ for f in sorted(files):
         for line in lines:
             try:
                 e = json.loads(line)
-                role = e.get('type') or e.get('role', '')
-                # 兼容不同 transcript 格式
-                text = e.get('text', '')
-                if not text and isinstance(e.get('content'), str):
-                    text = e['content']
-                if not text and isinstance(e.get('content'), list):
-                    for block in e['content']:
+                msg = e.get('message', {})
+                if not isinstance(msg, dict):
+                    continue
+                role = msg.get('role', '')
+                content = msg.get('content', '')
+                text = ''
+                if isinstance(content, str):
+                    text = content
+                elif isinstance(content, list):
+                    for block in content:
                         if isinstance(block, dict) and block.get('type') == 'text':
                             text += block.get('text', '')
-                if role in ('human', 'user', 'assistant') and text.strip():
+                if role in ('user', 'assistant') and text.strip():
                     session_msgs.append(f'[{role}] {text[:800]}')
             except:
                 pass
         if session_msgs:
             rel = os.path.relpath(f, os.path.expanduser('~'))
             results.append(f'=== 会话文件: ~/{rel} ===')
-            results.extend(session_msgs[:60])  # 每个会话最多 60 条消息
+            results.extend(session_msgs[:60])
     except:
         pass
 
@@ -86,7 +107,7 @@ else:
 ## 第四步：读取现有 wiki 索引
 
 ```bash
-cat "${WIKI_REPO_PATH}/index.md"
+cat "<WIKI_PATH>/index.md"
 ```
 
 对于每个知识点，判断：
@@ -97,7 +118,7 @@ cat "${WIKI_REPO_PATH}/index.md"
 
 对于每个知识点：
 
-**若需新建页面**：在 `$WIKI_REPO_PATH/wiki/` 创建新 markdown 文件。
+**若需新建页面**：在 `<WIKI_PATH>/wiki/` 创建新 markdown 文件。
 
 文件命名规则：英文 kebab-case，如 `docker-multi-stage-build.md`。
 
@@ -135,6 +156,26 @@ cat "${WIKI_REPO_PATH}/index.md"
 ```
 ## [YYYY-MM-DD] lizard | 蒸馏今日 N 个会话，新增 X 页，更新 Y 页
 ```
+
+## 第七步：自动 commit 并 push
+
+笔记写入完成后：
+
+```bash
+cd "<WIKI_PATH>" && git add wiki/ index.md log.md skills/ && git status --short
+```
+
+若有变更，commit 并 push：
+
+```bash
+cd "<WIKI_PATH>" && \
+  git commit -m "lizard: $(date +%Y-%m-%d) 蒸馏 N 个会话，新增 X 页，更新 Y 页" && \
+  git push origin main
+```
+
+将 commit message 中的 N/X/Y 替换为实际数字。
+
+若 push 失败，告知用户运行 `/llm-wiki:setup`。
 
 ## 完成后
 
