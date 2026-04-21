@@ -1,5 +1,9 @@
 # Wiki 日志
 
+## [2026-04-20] lizard-eat | 摄取 mcpmarket.com/skills-auto-activation，新增 1 页
+
+新增 `[[Claude-Code-Skills自动激活]]`：Skills 激活不可靠的根因分析、三级解法（Level 1 优化描述、Level 2 CLAUDE.md 引用、Level 3 自定义 UserPromptSubmit Hook）、skill-rules.json 完整配置格式（四种触发器）、Hook 骨架代码、局限性与验证清单。略去：完整 hook 实现代码（需参考 hyperpowers 插件源码）。
+
 ## [2026-04-20] lizard-eat | 摄取 docs.outerbounds.com 入门三部曲，新增 1 页，更新 1 页
 
 来源：first-scale / define-environment / first-deploy 三篇官方教程。新增 `[[Outerbounds-入门三部曲]]`（本地→云端→生产路径、foreach 并行、PyTorch GPU 示例、@retry 速查）；更新 `[[Outerbounds-特有装饰器]]` 补充 `@retry` 完整文档。略去：具体云账号配置、Workstation SSH 操作步骤（已有专题页覆盖）。
