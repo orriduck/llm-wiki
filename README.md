@@ -32,99 +32,64 @@ wiki 是一个不断增值的资产——每新增一个来源、每问一个好
 
 #### 步骤
 
-**1. Clone 仓库**
-
-```bash
-git clone https://github.com/orriduck/llm-wiki.git
-cd llm-wiki
-```
-
-**2. 安装为 Claude Code Plugin**
-
-打开 Claude Code，进入 `/plugins` 界面，添加 marketplace：
-
-```json
-// 在 ~/.claude/settings.json 的 extraKnownMarketplaces 中添加：
-{
-  "extraKnownMarketplaces": {
-    "llm-wiki": {
-      "source": {
-        "source": "github",
-        "repo": "orriduck/llm-wiki"
-      }
-    }
-  }
-}
-```
-
-然后在 `/plugins` 界面找到 `llm-wiki`，点击安装。安装时会提示输入本地仓库路径。
-
-**或者**，在 Claude Code 中直接用本地路径加载（开发/测试用）：
-
-```bash
-claude --plugin-dir /path/to/llm-wiki
-```
-
-**3. 初始化配置**
-
-打开 Claude Code，进入 llm-wiki 目录后运行：
+在 Claude Code 中运行三条命令：
 
 ```
-/setup
+/plugin marketplace add https://github.com/orriduck/llm-wiki
+/plugin install llm-wiki@llm-wiki
+/reload-plugins
 ```
 
-这会将 `WIKI_REPO_PATH` 写入 `~/.claude/settings.json`，后续所有 skill 都依赖此路径。
+完成。无需 clone 仓库，无需配置环境变量。插件安装后 wiki 内容直接存储在插件目录中，所有 skill 会自动检测路径。
 
-**4. 用 Obsidian 打开**（可选）
+**用 Obsidian 打开**（可选）
 
-将 llm-wiki 目录作为 Obsidian vault 打开，即可在图谱视图中看到所有页面的连接关系。
+插件安装路径为 `~/.claude/plugins/cache/llm-wiki/llm-wiki/<version>/`，将该目录作为 Obsidian vault 打开，即可在图谱视图中看到所有页面的连接关系。
 
 ### 日常使用
 
 #### 每日收工：蒸馏当天知识
 
 ```
-/lizard
+/llm-wiki:lizard
 ```
 
-自动扫描今天所有 Claude 会话的 transcript，提取有价值的知识点，整理为原子笔记写入 `wiki/`，并更新 `index.md` 和 `log.md`。
+自动扫描今天所有 Claude 会话的 transcript，提取有价值的知识点，整理为原子笔记写入 `wiki/`，更新 `index.md` 和 `log.md`，并自动 commit + push。
 
 支持按主题过滤：
 
 ```
-/lizard Python
+/llm-wiki:lizard Python
 ```
+
+#### 从外部 URL 摄取知识
+
+```
+/llm-wiki:lizard-eat <url> <topic>
+```
+
+抓取指定 URL 的内容，整理为详尽的原子笔记（附来源引用）。因为有完整原始资料，比 `lizard` 生成的笔记更详细。
 
 #### 查询 wiki
 
 ```
-/wiki-search <关键词>
+/llm-wiki:wiki-search <关键词>
 ```
 
 全文搜索 wiki 目录，返回匹配的页面和相关段落。
 
-#### 手动 ingest 来源
-
-直接告诉 Claude：
-
-```
-帮我把这篇文章整理进 wiki：[粘贴内容或文件路径]
-```
-
-Claude 会读取来源、提取关键信息、写摘要页、更新相关页面和索引。
-
 #### 提交变更
 
 ```
-/wiki-push
+/llm-wiki:wiki-push
 ```
 
-自动生成 commit message，暂存 wiki 相关文件，push 到当前分支。
+自动生成 commit message，暂存 wiki 相关文件，push 到远程。
 
 #### 创建 Pull Request
 
 ```
-/wiki-pr
+/llm-wiki:wiki-pr
 ```
 
 基于 `templates/pr-template.md` 自动填充 PR 描述（日期、新增/更新页面、知识摘要），用 `gh` 创建 PR。
@@ -145,9 +110,9 @@ llm-wiki/
 ├── log.md             # 操作日志（ingest、query、lint 记录）
 ├── CLAUDE.md          # Schema：告诉 LLM wiki 的规范和工作流
 ├── skills/            # Claude Code skills
-│   ├── lizard/        # 每日知识蒸馏
-│   ├── wiki-search/   # wiki 搜索
-│   └── setup/         # 初始化配置
+│   ├── lizard/        # 每日知识蒸馏（自动 push）
+│   ├── lizard-eat/    # 从外部 URL 摄取知识
+│   └── wiki-search/   # wiki 搜索
 ├── commands/          # Claude Code commands
 │   ├── wiki-push.md   # 提交推送
 │   └── wiki-pr.md     # 创建 PR
@@ -185,102 +150,67 @@ The wiki is a compounding asset — every source you add and every good question
 
 #### Steps
 
-**1. Clone the repo**
-
-```bash
-git clone https://github.com/orriduck/llm-wiki.git
-cd llm-wiki
-```
-
-**2. Install as a Claude Code Plugin**
-
-Open Claude Code, go to `/plugins`, and add this marketplace:
-
-```json
-// Add to extraKnownMarketplaces in ~/.claude/settings.json:
-{
-  "extraKnownMarketplaces": {
-    "llm-wiki": {
-      "source": {
-        "source": "github",
-        "repo": "orriduck/llm-wiki"
-      }
-    }
-  }
-}
-```
-
-Then find `llm-wiki` in `/plugins` and install it. You'll be prompted to enter your local repo path.
-
-**Alternatively**, load directly from a local path (for development/testing):
-
-```bash
-claude --plugin-dir /path/to/llm-wiki
-```
-
-**3. Run setup**
-
-Inside Claude Code, from the llm-wiki directory:
+Run three commands inside Claude Code:
 
 ```
-/setup
+/plugin marketplace add https://github.com/orriduck/llm-wiki
+/plugin install llm-wiki@llm-wiki
+/reload-plugins
 ```
 
-This writes `WIKI_REPO_PATH` to `~/.claude/settings.json` — all other skills depend on this.
+That's it. No cloning, no environment variables. The plugin auto-detects its own path — all skills work immediately.
 
-**4. Open in Obsidian** (optional)
+**Open in Obsidian** (optional)
 
-Open the llm-wiki directory as an Obsidian vault. The graph view shows how all pages connect.
+The plugin installs to `~/.claude/plugins/cache/llm-wiki/llm-wiki/<version>/`. Open that directory as an Obsidian vault to browse the wiki graph view.
 
 ### Daily workflow
 
 #### End-of-day: distill today's knowledge
 
 ```
-/lizard
+/llm-wiki:lizard
 ```
 
-Scans all today's Claude session transcripts, extracts reusable knowledge, writes atomic notes to `wiki/`, and updates `index.md` and `log.md`.
+Scans all today's Claude session transcripts, extracts reusable knowledge, writes atomic notes to `wiki/`, updates `index.md` and `log.md`, then auto-commits and pushes.
 
 Filter by topic:
 
 ```
-/lizard Python
+/llm-wiki:lizard Python
 ```
+
+#### Ingest from a URL
+
+```
+/llm-wiki:lizard-eat <url> <topic>
+```
+
+Fetches a URL and distills it into detailed atomic notes with source citations. More thorough than `lizard` because it has the full original content to work from.
 
 #### Search the wiki
 
 ```
-/wiki-search <query>
+/llm-wiki:wiki-search <query>
 ```
 
 Full-text search across the wiki directory, returning matching pages and relevant excerpts.
 
-#### Manually ingest a source
-
-Just tell Claude:
-
-```
-Please ingest this into the wiki: [paste content or file path]
-```
-
-Claude reads the source, extracts key information, writes a summary page, updates related pages and the index.
-
 #### Commit changes
 
 ```
-/wiki-push
+/llm-wiki:wiki-push
 ```
 
-Auto-generates a commit message, stages wiki-related files, pushes to the current branch.
+Auto-generates a commit message, stages wiki-related files, pushes to remote.
 
 #### Create a Pull Request
 
 ```
-/wiki-pr
+/llm-wiki:wiki-pr
 ```
 
-Fills in the PR template (`templates/pr-template.md`) with date, new/updated pages, and a knowledge summary, then creates the PR via `gh`.
+Fills in the PR template with date, new/updated pages, and a knowledge summary, then creates the PR via `gh`.
 
 ### Repository structure
 
@@ -298,9 +228,9 @@ llm-wiki/
 ├── log.md             # Operation log (ingest, query, lint entries)
 ├── CLAUDE.md          # Schema: tells the LLM the wiki's conventions and workflows
 ├── skills/            # Claude Code skills
-│   ├── lizard/        # Daily knowledge distillation
-│   ├── wiki-search/   # Wiki search
-│   └── setup/         # Initial configuration
+│   ├── lizard/        # Daily knowledge distillation (auto-push)
+│   ├── lizard-eat/    # Ingest knowledge from a URL
+│   └── wiki-search/   # Wiki search
 ├── commands/          # Claude Code commands
 │   ├── wiki-push.md   # Commit and push
 │   └── wiki-pr.md     # Create PR
