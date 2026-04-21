@@ -1,5 +1,9 @@
 # Wiki 日志
 
+## [2026-04-20] lizard-eat | 摄取 docs.outerbounds.com 入门三部曲，新增 1 页，更新 1 页
+
+来源：first-scale / define-environment / first-deploy 三篇官方教程。新增 `[[Outerbounds-入门三部曲]]`（本地→云端→生产路径、foreach 并行、PyTorch GPU 示例、@retry 速查）；更新 `[[Outerbounds-特有装饰器]]` 补充 `@retry` 完整文档。略去：具体云账号配置、Workstation SSH 操作步骤（已有专题页覆盖）。
+
 ## [2026-04-20] lizard | 蒸馏今日 4 个会话，新增 2 页，更新 1 页
 
 从 liveatc-caption 项目开发和 Claude Code 插件配置会话中蒸馏知识点。涵盖 Vue 数字动效、地图死推算动画、claude-hud / llm-wiki 插件配置。

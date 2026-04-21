@@ -1,8 +1,8 @@
 # Outerbounds-Specific Decorators / Outerbounds 特有装饰器
 
-> Detailed guide to advanced decorators in the Outerbounds/Metaflow ecosystem: `@secrets`, `@checkpoint`, `@model`, `@huggingface_hub`, `@kubernetes` (full parameters), `@gpu_profile`, `@torchrun`, `@metaflow_ray` with usage and code examples.
+> Detailed guide to advanced decorators in the Outerbounds/Metaflow ecosystem: `@secrets`, `@checkpoint`, `@model`, `@huggingface_hub`, `@kubernetes` (full parameters), `@gpu_profile`, `@torchrun`, `@metaflow_ray`, `@retry` with usage and code examples.
 
-> 详解 Outerbounds/Metaflow 生态中的高级装饰器：`@secrets`、`@checkpoint`、`@model`、`@huggingface_hub`、`@kubernetes`（完整参数）、`@gpu_profile`、`@torchrun`、`@metaflow_ray` 的用法和代码示例。
+> 详解 Outerbounds/Metaflow 生态中的高级装饰器：`@secrets`、`@checkpoint`、`@model`、`@huggingface_hub`、`@kubernetes`（完整参数）、`@gpu_profile`、`@torchrun`、`@metaflow_ray`、`@retry` 的用法和代码示例。
 
 Related notes / 相关笔记：[[Metaflow工作流框架]] | [[Outerbounds概览]]
 
@@ -21,6 +21,51 @@ Related notes / 相关笔记：[[Metaflow工作流框架]] | [[Outerbounds概览
 | `@torchrun` | `metaflow-torchrun` | `pip install metaflow-torchrun` |
 | `@metaflow_ray` | `metaflow-ray` | `pip install metaflow-ray` |
 | `@gpu_profile` | `metaflow-gpu-profile` | Manual copy of `gpu_profile.py` / 手动复制 |
+| `@retry` | `metaflow` (built-in / 内置) | `pip install metaflow` |
+
+---
+
+## `@retry` Decorator / `@retry` 装饰器
+
+`@retry` automatically retries a step when it fails due to transient errors (network issues, API timeouts, spot-instance preemptions, etc.).
+
+> `@retry` 在 step 因瞬时错误失败时自动重试（网络问题、API 超时、Spot 实例被抢占等）。
+
+```python
+from metaflow import FlowSpec, step, retry
+
+class RobustFlow(FlowSpec):
+
+    @retry(times=3, minutes_between_retries=2)
+    @step
+    def fetch_data(self):
+        # Safe to retry: read-only external call / 可安全重试：只读外部调用
+        import requests
+        self.data = requests.get("https://api.example.com/data").json()
+        self.next(self.end)
+
+    @step
+    def end(self):
+        print(self.data)
+```
+
+| Parameter / 参数 | Type / 类型 | Default / 默认值 | Description / 说明 |
+|---|---|---|---|
+| `times` | int | 3 | Max retry attempts (not counting the initial attempt) / 最大重试次数（不含首次执行）|
+| `minutes_between_retries` | int | 2 | Wait between retries in minutes / 每次重试之间等待的分钟数 |
+
+**When to use `@retry` / 何时使用 `@retry`:**
+
+- Steps that call external APIs or fetch data from S3/GCS/Azure Blob
+- Steps that may be killed by spot-instance preemption
+- Any step where failure is likely transient and retrying is safe
+
+**When NOT to use `@retry` / 何时不用 `@retry`:**
+
+- Steps with non-idempotent side effects (e.g., sending an email, writing to a database without deduplication)
+- Steps where failure indicates a logic bug that retrying will not fix
+
+> **与 `@checkpoint` 配合使用：** `@checkpoint` 保存中间状态，`@retry` 失败重试时自动加载最新 checkpoint，避免长训练任务从头开始。
 
 ---
 

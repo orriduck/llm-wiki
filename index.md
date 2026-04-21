@@ -11,7 +11,8 @@
 | [[Outerbounds-认证与权限]] | 个人 PAT、Machine Users（GitHub OIDC / CircleCI / AWS IAM）、SSO 集成、RBAC 权限模型 |
 | [[Outerbounds-部署与调度]] | Argo Workflows 部署、`@project` 装饰器、`--production`/`--branch`、`@schedule`/`@trigger`、CI/CD 集成 |
 | [[Outerbounds-依赖管理]] | fast-bakery 原理与用法、`@conda`/`@pypi` 在 OB 上的行为、Perimeter Policy 对依赖的影响、自定义镜像 |
-| [[Outerbounds-特有装饰器]] | `@secrets`、`@checkpoint`、`@model`、`@huggingface_hub`、`@kubernetes`（完整参数）、`@gpu_profile`、`@torchrun`、`@metaflow_ray` |
+| [[Outerbounds-特有装饰器]] | `@secrets`、`@checkpoint`、`@model`、`@huggingface_hub`、`@kubernetes`（完整参数）、`@gpu_profile`、`@torchrun`、`@metaflow_ray`、`@retry` |
+| [[Outerbounds-入门三部曲]] | 本地→云端→生产三步路径、`foreach`并行、`@resources`、PyTorch GPU镜像示例、`@retry`、`@schedule`、`@project` 速查 |
 | [[Outerbounds-配置与CLI]] | `~/.metaflowconfig` 完整字段（OB 版本）、多 profile 管理、`outerbounds` CLI 命令、`METAFLOW_PROFILE` |
 | [[Outerbounds-在Flow外使用IAM角色]] | 在 Flow 外使用 `obp-*-task` 角色访问 AWS 资源的 5 种方法、认证链原理、角色命名规则 |
 | [[Metaflow-FanOut-Join模式]] | Fan-out/join 并行数据加载模式、merge_artifacts、PyArrow S3FileSystem 读取、@card 摘要 |
