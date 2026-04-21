@@ -16,6 +16,8 @@
 | [[Outerbounds-配置与CLI]] | `~/.metaflowconfig` 完整字段（OB 版本）、多 profile 管理、`outerbounds` CLI 命令、`METAFLOW_PROFILE` |
 | [[Outerbounds-在Flow外使用IAM角色]] | 在 Flow 外使用 `obp-*-task` 角色访问 AWS 资源的 5 种方法、认证链原理、角色命名规则 |
 | [[Metaflow-FanOut-Join模式]] | Fan-out/join 并行数据加载模式、merge_artifacts、PyArrow S3FileSystem 读取、@card 摘要 |
+| [[Metaflow-PreRun生命周期与FlowMutator]] | Pre-run 三阶段（config→mutate→check）、FlowMutator 独立执行、pre_mutate 静态分析模式 |
+| [[Metaflow-打包文件选择机制]] | MetaflowPackage 文件选择：user code 目录遍历 + MetaflowCodeContentV1 模块解析、扫描范围对比 |
 
 ## AWS
 

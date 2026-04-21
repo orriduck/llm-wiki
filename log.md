@@ -1,5 +1,17 @@
 # Wiki 日志
 
+## [2026-04-20] lizard | 蒸馏今日 3 个会话，新增 2 页，更新 0 页
+
+从 MLOPS-972 开发会话中蒸馏知识点。涵盖 Metaflow 内部架构：pre-run 生命周期三阶段、FlowMutator 开发模式（只读静态分析）、打包文件选择机制（MetaflowPackage vs MetaflowCodeContentV1）。
+
+**创建页面：**
+- `wiki/metaflow/Metaflow-PreRun生命周期与FlowMutator.md` — Pre-run 三阶段序列、FlowMutator 独立执行原理、pre_mutate 可访问内容、只读静态分析模式
+- `wiki/metaflow/Metaflow-打包文件选择机制.md` — user code 目录遍历 + 模块内容解析、四种扫描范围方案对比、MetaflowCodeContentV1 在 pre_mutate 时使用方法
+
+**未单独建页的知识点：**
+- whoop-outerbounds 测试模式（flow classes 在 tests/flows/ 模块级定义、MutableFlow 测试用法）——属于项目约定，非通用知识
+- Subagent-driven development 执行过程——属于工具使用流程，非领域知识
+
 ## [2026-04-20] lizard-eat | 摄取 mcpmarket.com/skills-auto-activation，新增 1 页
 
 新增 `[[Claude-Code-Skills自动激活]]`：Skills 激活不可靠的根因分析、三级解法（Level 1 优化描述、Level 2 CLAUDE.md 引用、Level 3 自定义 UserPromptSubmit Hook）、skill-rules.json 完整配置格式（四种触发器）、Hook 骨架代码、局限性与验证清单。略去：完整 hook 实现代码（需参考 hyperpowers 插件源码）。
