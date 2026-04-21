@@ -10,41 +10,43 @@ argument-hint: "<搜索关键词>"
 
 在 llm-wiki 知识库中搜索与 `$ARGUMENTS` 相关的内容。
 
-## 第一步：确认路径
+## 第一步：检测 wiki 路径
 
 ```bash
-echo "${WIKI_REPO_PATH:-未设置}"
+python3 -c "
+import json, os
+p = os.path.expanduser('~/.claude/plugins/installed_plugins.json')
+data = json.load(open(p))
+for key, entries in data.get('plugins', {}).items():
+    if 'llm-wiki' in key:
+        print(entries[-1]['installPath'])
+        break
+"
 ```
 
-若未设置，提示用户先运行 `/setup`，然后停止。
+将输出记为 `WIKI_PATH`。若找不到，告知用户重新安装插件并停止。
 
-若 `$ARGUMENTS` 为空，提示用户提供搜索关键词，然后停止。
+若 `$ARGUMENTS` 为空，提示用户提供搜索关键词并停止。
 
 ## 第二步：搜索 index.md（高层级匹配）
 
-读取 `$WIKI_REPO_PATH/index.md`，找出标题或摘要中包含关键词的条目。这些是第一优先级候选页面。
+读取 `<WIKI_PATH>/index.md`，找出标题或摘要中包含关键词的条目，作为第一优先级候选页面。
 
 ## 第三步：全文搜索 wiki/
 
-在 `$WIKI_REPO_PATH/wiki/` 目录下全文搜索关键词（大小写不敏感），列出匹配的文件和行：
-
 ```bash
-grep -rli "$ARGUMENTS" "${WIKI_REPO_PATH}/wiki/" 2>/dev/null | head -20
+grep -rli "$ARGUMENTS" "<WIKI_PATH>/wiki/" 2>/dev/null | head -20
 ```
 
-同时获取匹配行的上下文：
-
 ```bash
-grep -rni "$ARGUMENTS" "${WIKI_REPO_PATH}/wiki/" --include="*.md" -A 2 -B 1 2>/dev/null | head -100
+grep -rni "$ARGUMENTS" "<WIKI_PATH>/wiki/" --include="*.md" -A 2 -B 1 2>/dev/null | head -100
 ```
 
 ## 第四步：读取最相关页面
 
-综合第二、三步的结果，按相关度排序，读取最匹配的前 **3 个页面**的完整内容。
+综合第二、三步结果，按相关度排序，读取最匹配的前 **3 个页面**的完整内容。
 
 ## 第五步：返回结果
-
-以如下格式汇报搜索结果：
 
 ```
 ## 搜索结果：<关键词>
@@ -61,4 +63,4 @@ grep -rni "$ARGUMENTS" "${WIKI_REPO_PATH}/wiki/" --include="*.md" -A 2 -B 1 2>/d
 
 若没有找到任何匹配内容，告知用户，并建议：
 - 尝试不同关键词
-- 该主题可能尚未有笔记，可通过 `/lizard` 或手动 ingest 添加
+- 该主题尚无笔记，可通过 `/llm-wiki:lizard-eat <url> <topic>` 从外部资料摄取
