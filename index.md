@@ -15,6 +15,7 @@
 | [[Outerbounds-入门三部曲]] | 本地→云端→生产三步路径、`foreach`并行、`@resources`、PyTorch GPU镜像示例、`@retry`、`@schedule`、`@project` 速查 |
 | [[Outerbounds-配置与CLI]] | `~/.metaflowconfig` 完整字段（OB 版本）、多 profile 管理、`outerbounds` CLI 命令、`METAFLOW_PROFILE` |
 | [[Outerbounds-在Flow外使用IAM角色]] | 在 Flow 外使用 `obp-*-task` 角色访问 AWS 资源的 5 种方法、认证链原理、角色命名规则 |
+| [[Outerbounds-Branch-Resolution]] | Outerbounds 分支解析机制：`--production` / `--branch` 命名空间映射、CI 分支决策、常见错误与防护 |
 | [[Metaflow-FanOut-Join模式]] | Fan-out/join 并行数据加载模式、merge_artifacts、PyArrow S3FileSystem 读取、@card 摘要 |
 | [[Metaflow-PreRun生命周期与FlowMutator]] | Pre-run 三阶段（config→mutate→check）、FlowMutator 独立执行、pre_mutate 静态分析模式 |
 | [[Metaflow-打包文件选择机制]] | MetaflowPackage 文件选择：user code 目录遍历 + MetaflowCodeContentV1 模块解析、扫描范围对比 |
@@ -51,6 +52,7 @@
 | [[python-pii库对比]] | Python PII 检测库横向对比：Presidio、scrubadub、DataFog、PIICatcher、detect-secrets、pii-masker 等，覆盖使用难度、扩展性、准确度、支持范围 |
 | [[importlib-resources]] | `importlib.resources.files()` 包内资源定位、vs `os.path` 对比、`__init__.py` 要求、Metaflow 远程执行注意事项 |
 | [[pydantic-type-coercion]] | Pydantic 自动类型强制转换（string→date）、Parquet schema 兼容性陷阱、`str()` 回转、v1/v2 差异 |
+| [[CircleCI-Orb文件结构]] | CircleCI Orb 标准目录：`src/@orb.yml`、commands/jobs/executors/examples、`dist/orb.yml` 及发布校验流程 |
 
 ## AI 智能体
 
@@ -73,4 +75,3 @@
 | 页面 | 摘要 |
 |------|------|
 | [[如何充分利用一对一]] | 与经理一对一的最佳实践：七条核心原则 + L1–L8 各级别具体话题指导，关系从指导到战略伙伴的演变 |
-
