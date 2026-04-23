@@ -27,14 +27,14 @@ wiki 是一个不断增值的资产——每新增一个来源、每问一个好
 
 #### 前提条件
 
-- [Claude Code](https://claude.ai/code) CLI 已安装并登录
+- Claude Code 或 Codex 已安装并登录
 - [Obsidian](https://obsidian.md) 已安装（推荐，用于浏览 wiki）
 - Git 已配置 GitHub 访问权限
 - `gh` CLI（可选，用于创建 PR）
 
-#### 步骤
+#### 安装工具仓库
 
-在 Claude Code 中运行三条命令：
+如果使用 Claude Code，在 Claude Code 中运行三条命令：
 
 ```
 /plugin marketplace add https://github.com/orriduck/llm-wiki
@@ -42,14 +42,29 @@ wiki 是一个不断增值的资产——每新增一个来源、每问一个好
 /reload-plugins
 ```
 
-完成后，你已经安装了工具插件。下一步需要连接你的内容仓库。
+如果使用 Codex，安装或 clone 这个工具仓库，让 Codex 能读取本仓库的 `AGENTS.md`、`skills/`、`commands/` 和 `scripts/`：
+
+```
+git clone git@github.com:orriduck/llm-wiki.git ~/Devs/llm-wiki
+cd ~/Devs/llm-wiki
+```
+
+之后在这个 checkout 中运行脚本，或让 Codex 按 `AGENTS.md` 的说明调用对应技能。`llm-wiki` 仍然只是工具仓库；真正的笔记在下一步连接的 `llm-wiki-content`。
 
 #### 首次设置内容仓库
 
-在新电脑上，先安装并打开一次 Obsidian，让 iCloud Drive 创建 Obsidian 文件夹。然后运行：
+在新电脑上，先安装并打开一次 Obsidian，让 iCloud Drive 创建 Obsidian 文件夹。
+
+Claude Code 用户运行：
 
 ```
 /llm-wiki:setup
+```
+
+Codex 或手动 setup 用户在 `llm-wiki` checkout 中运行：
+
+```
+python3 scripts/setup_wiki.py
 ```
 
 默认会把内容仓库 clone 到：
@@ -64,10 +79,16 @@ wiki 是一个不断增值的资产——每新增一个来源、每问一个好
 ~/.llm-wiki/config.json
 ```
 
-之后所有 skill 都会通过这个配置找到 `llm-wiki-content`。如果你想使用自己的仓库或路径：
+之后 Claude Code、Codex 和脚本都会通过这个配置找到 `llm-wiki-content`。如果你想使用自己的仓库或路径：
 
 ```
 /llm-wiki:setup git@github.com:orriduck/llm-wiki-content.git "/path/to/llm-wiki-content"
+```
+
+Codex / 手动等价命令：
+
+```
+python3 scripts/setup_wiki.py git@github.com:orriduck/llm-wiki-content.git "/path/to/llm-wiki-content"
 ```
 
 **用 Obsidian 打开**（可选）
@@ -90,6 +111,8 @@ wiki 是一个不断增值的资产——每新增一个来源、每问一个好
 /llm-wiki:lizard Python
 ```
 
+在 Codex 中，如果没有 Claude slash command，让 Codex 使用 `skills/lizard/SKILL.md`，或直接说明：“run the lizard skill for today's sessions”。所有写入仍会落到已配置的 `llm-wiki-content`。
+
 #### 从外部 URL 摄取知识
 
 ```
@@ -98,6 +121,8 @@ wiki 是一个不断增值的资产——每新增一个来源、每问一个好
 
 抓取指定 URL 的内容，整理为详尽的原子笔记（附来源引用）。因为有完整原始资料，比 `lizard` 生成的笔记更详细。
 
+在 Codex 中，让 Codex 使用 `skills/lizard-eat/SKILL.md` 处理同样的 URL 和 topic。
+
 #### 查询 wiki
 
 ```
@@ -105,6 +130,12 @@ wiki 是一个不断增值的资产——每新增一个来源、每问一个好
 ```
 
 全文搜索 wiki 目录，返回匹配的页面和相关段落。
+
+Codex 或手动搜索可运行：
+
+```
+python3 scripts/wiki_search.py "<关键词>"
+```
 
 #### 提交变更
 
@@ -124,7 +155,7 @@ wiki 是一个不断增值的资产——每新增一个来源、每问一个好
 
 ### 双仓库模型
 
-- `llm-wiki`：插件、skills、commands、agents、脚本。可重新安装，是工具仓库。
+- `llm-wiki`：Claude/Codex 可用的插件、skills、commands、agents、脚本。可重新安装，是工具仓库。
 - `llm-wiki-content`：真正的 Obsidian vault 和笔记内容。应 clone 到 iCloud Drive / Obsidian 文件夹，并通过 PR 发布。
 
 ### 仓库结构
@@ -190,14 +221,14 @@ The wiki is a compounding asset — every source you add and every good question
 
 #### Prerequisites
 
-- [Claude Code](https://claude.ai/code) CLI installed and logged in
+- Claude Code or Codex installed and logged in
 - [Obsidian](https://obsidian.md) installed (recommended for browsing the wiki)
 - Git configured with GitHub access
 - `gh` CLI (optional, for creating PRs)
 
-#### Steps
+#### Install the Tooling Repository
 
-Run three commands inside Claude Code:
+If using Claude Code, run three commands inside Claude Code:
 
 ```
 /plugin marketplace add https://github.com/orriduck/llm-wiki
@@ -205,14 +236,29 @@ Run three commands inside Claude Code:
 /reload-plugins
 ```
 
-This installs the tooling plugin.
+If using Codex, install or clone this tooling repository so Codex can read `AGENTS.md`, `skills/`, `commands/`, and `scripts/`:
+
+```
+git clone git@github.com:orriduck/llm-wiki.git ~/Devs/llm-wiki
+cd ~/Devs/llm-wiki
+```
+
+From there, run scripts in this checkout or ask Codex to follow `AGENTS.md` and the relevant skill files. `llm-wiki` is still only tooling; the actual notes are connected in the next step through `llm-wiki-content`.
 
 #### First-time content setup
 
-On a new computer, install and open Obsidian once first so iCloud Drive creates the Obsidian folder. Then run:
+On a new computer, install and open Obsidian once first so iCloud Drive creates the Obsidian folder.
+
+Claude Code users run:
 
 ```
 /llm-wiki:setup
+```
+
+Codex or manual setup users run this from the `llm-wiki` checkout:
+
+```
+python3 scripts/setup_wiki.py
 ```
 
 By default, setup clones the content repo to:
@@ -227,10 +273,16 @@ and writes:
 ~/.llm-wiki/config.json
 ```
 
-After that, all skills resolve `llm-wiki-content` through this config. To use a custom repo or path:
+After that, Claude Code, Codex, and scripts resolve `llm-wiki-content` through this config. To use a custom repo or path:
 
 ```
 /llm-wiki:setup git@github.com:orriduck/llm-wiki-content.git "/path/to/llm-wiki-content"
+```
+
+Codex / manual equivalent:
+
+```
+python3 scripts/setup_wiki.py git@github.com:orriduck/llm-wiki-content.git "/path/to/llm-wiki-content"
 ```
 
 **Open in Obsidian** (optional)
@@ -253,6 +305,8 @@ Filter by topic:
 /llm-wiki:lizard Python
 ```
 
+In Codex, when Claude slash commands are not available, ask Codex to use `skills/lizard/SKILL.md`, or say: "run the lizard skill for today's sessions." Writes still go to the configured `llm-wiki-content`.
+
 #### Ingest from a URL
 
 ```
@@ -261,6 +315,8 @@ Filter by topic:
 
 Fetches a URL and distills it into detailed atomic notes with source citations. More thorough than `lizard` because it has the full original content to work from.
 
+In Codex, ask Codex to use `skills/lizard-eat/SKILL.md` with the same URL and topic.
+
 #### Search the wiki
 
 ```
@@ -268,6 +324,12 @@ Fetches a URL and distills it into detailed atomic notes with source citations. 
 ```
 
 Full-text search across the wiki directory, returning matching pages and relevant excerpts.
+
+Codex or manual search can run:
+
+```
+python3 scripts/wiki_search.py "<query>"
+```
 
 #### Commit changes
 
@@ -287,7 +349,7 @@ Fills in the PR template with date, new/updated pages, and a knowledge summary, 
 
 ### Two-Repository Model
 
-- `llm-wiki`: plugin, skills, commands, agents, and scripts. It is reinstallable tooling.
+- `llm-wiki`: Claude/Codex-usable plugin, skills, commands, agents, and scripts. It is reinstallable tooling.
 - `llm-wiki-content`: the actual Obsidian vault and note content. Clone this into iCloud Drive / Obsidian and publish through PRs.
 
 ### Repository structure
