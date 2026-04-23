@@ -48,6 +48,7 @@
 | [[Claude-Code-Skills自动激活]] | Skills 不可靠激活的根因、三级解法（优化描述/CLAUDE.md/自定义Hook）、skill-rules.json 配置、UserPromptSubmit Hook 骨架代码 |
 | [[vue-number-flow]] | `@number-flow/vue` 数字滚动动效组件，METAR KPI 面板集成、格式化选项、slot 用法 |
 | [[map-dead-reckoning-raf]] | requestAnimationFrame 地图标记死推算（匀速运动插值），30kt 速度阈值，箭头/圆点图标切换 |
+| [[Datadog-Grok日志解析]] | Datadog Grok parsing: ingest-time vs query-time extraction, matcher/filter reference, keyvalue/JSON/date/CSV/glog recipes, regex performance guidance / Datadog Grok 日志解析：写入时与查询时差异、matcher/filter 速查、keyvalue/JSON/date/CSV/glog 配方、正则性能建议 |
 | [[python-pii库对比]] | Python PII 检测库横向对比：Presidio、scrubadub、DataFog、PIICatcher、detect-secrets、pii-masker 等，覆盖使用难度、扩展性、准确度、支持范围 |
 | [[importlib-resources]] | `importlib.resources.files()` 包内资源定位、vs `os.path` 对比、`__init__.py` 要求、Metaflow 远程执行注意事项 |
 | [[pydantic-type-coercion]] | Pydantic 自动类型强制转换（string→date）、Parquet schema 兼容性陷阱、`str()` 回转、v1/v2 差异 |
@@ -73,4 +74,3 @@
 | 页面 | 摘要 |
 |------|------|
 | [[如何充分利用一对一]] | 与经理一对一的最佳实践：七条核心原则 + L1–L8 各级别具体话题指导，关系从指导到战略伙伴的演变 |
-

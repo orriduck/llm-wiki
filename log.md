@@ -1,5 +1,27 @@
 # Wiki 日志
 
+## [2026-04-22] ingest | Datadog Grok log parsing
+
+Ingested Datadog's official Grok parsing documentation, regex guidance, and query-time extraction documentation into the engineering wiki.
+
+> 已将 Datadog 官方 Grok parsing 文档、正则指南和查询时提取文档整理进工程 wiki。
+
+**Created pages:**
+
+> **创建页面：**
+
+- `wiki/engineering/Datadog-Grok日志解析.md` — ingest-time vs query-time parsing, Grok syntax, matcher/filter reference, rule execution semantics, common recipes, helper rules, regex performance guidance, attribute naming, pipeline placement, and debugging checklist.
+  > `wiki/engineering/Datadog-Grok日志解析.md` — 覆盖写入时与查询时解析差异、Grok 语法、matcher/filter 速查、规则执行语义、常见配方、helper rules、正则性能、属性命名、pipeline 位置和调试清单。
+
+**Updated pages:**
+
+> **更新页面：**
+
+- `index.md` — added `[[Datadog-Grok日志解析]]` under Engineering.
+  > `index.md` — 在工程分类下新增 `[[Datadog-Grok日志解析]]`。
+
+---
+
 ## [2026-04-20] lizard | 蒸馏今日 3 个会话，新增 2 页，更新 0 页
 
 从 MLOPS-972 开发会话中蒸馏知识点。涵盖 Metaflow 内部架构：pre-run 生命周期三阶段、FlowMutator 开发模式（只读静态分析）、打包文件选择机制（MetaflowPackage vs MetaflowCodeContentV1）。
