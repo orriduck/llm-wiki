@@ -105,9 +105,7 @@ llm-wiki/
 │   └── pull_request_template.md # PR 模板
 ├── agents/
 │   └── wiki-curator.md # 批量操作 agent（模型：sonnet）
-├── wiki/              # （已迁移）示例内容；正式内容位于 llm-wiki-content（private）
-├── index.md           # （已迁移）wiki 索引位于 llm-wiki-content
-├── log.md             # （已迁移）操作日志位于 llm-wiki-content
+├── （无内容文件）      # wiki 内容已全部迁移至 llm-wiki-content（private）
 ├── CLAUDE.md          # Schema：告诉 LLM wiki 的规范和工作流
 ├── skills/            # Claude Code skills
 │   ├── lizard/        # 每日知识蒸馏（自动 push）
@@ -223,9 +221,7 @@ llm-wiki/
 │   └── pull_request_template.md # PR template
 ├── agents/
 │   └── wiki-curator.md # Bulk operations agent (model: sonnet)
-├── wiki/              # (migrated) sample content only; canonical content lives in llm-wiki-content (private)
-├── index.md           # (migrated) canonical index lives in llm-wiki-content
-├── log.md             # (migrated) canonical log lives in llm-wiki-content
+├── (no content files) # all wiki content was migrated to llm-wiki-content (private)
 ├── CLAUDE.md          # Schema: tells the LLM the wiki's conventions and workflows
 ├── skills/            # Claude Code skills
 │   ├── lizard/        # Daily knowledge distillation (auto-push)
