@@ -4,13 +4,13 @@
     "name": "orriduck"
   },
   "metadata": {
-    "description": "Personal knowledge base - distill daily work into a bilingual, searchable wiki"
+    "description": "Personal knowledge base tooling - set up an Obsidian/iCloud content vault, distill daily work, search notes, and publish via PR"
   },
   "plugins": [
     {
       "name": "llm-wiki",
       "source": "./",
-      "description": "Personal knowledge base wiki workflow: daily distillation, search, and PR submission"
+      "description": "Personal knowledge base workflow: setup, daily distillation, search, and PR submission for a separate content vault"
     }
   ]
 }

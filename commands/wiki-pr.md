@@ -1,42 +1,44 @@
 ---
-description: 基于 PR 模板创建 Pull Request，自动填充今日新增/更新的 wiki 页面列表和知识摘要。
+description: Create a Pull Request for the current llm-wiki-content branch, filling in changed pages and a knowledge summary.
 ---
 
-为今日 wiki 更新创建一个 Pull Request。
+Create a Pull Request for wiki updates.
 
-## 步骤
+## Steps
 
-1. 进入 wiki 仓库目录：
+1. Resolve and enter the content repo:
    ```bash
+   WIKI_REPO_PATH="$(python3 scripts/wiki_path.py)"
    cd "${WIKI_REPO_PATH}"
    ```
-   若 `$WIKI_REPO_PATH` 未设置，提示用户先运行 `/setup`，然后停止。
+   If resolution fails, tell the user to run `/llm-wiki:setup`, then stop.
 
-2. 确认当前分支不是 main/master：
+2. Confirm the current branch is not `main` or `master`:
    ```bash
    git branch --show-current
    ```
-   若在 main/master 上，提示用户先切换到功能分支，停止。
+   If on `main` or `master`, ask the user to switch to a content branch and stop.
 
-3. 获取与 main 的差异，统计变更的 wiki 页面：
+3. Get the diff against `main` and list changed wiki pages:
    ```bash
    git diff --name-only origin/main...HEAD -- wiki/ index.md log.md 2>/dev/null || \
    git diff --name-only main...HEAD -- wiki/ index.md log.md 2>/dev/null
    ```
 
-4. 读取 PR 模板：
+4. Read the PR template:
    ```bash
-   cat "${WIKI_REPO_PATH}/templates/pr-template.md"
+   cat "<PLUGIN_PATH>/templates/pr-template.md"
    ```
+   `<PLUGIN_PATH>` is the current `llm-wiki` plugin repository path; the PR target is still `llm-wiki-content`.
 
-5. 基于模板和变更信息，生成完整的 PR 描述（中文填写正文，自动填充日期、新增页面列表、更新页面列表）。
+5. Generate a complete PR body from the template and changed files. Fill in date, created pages, updated pages, and a concise knowledge summary.
 
-6. 创建 PR：
+6. Create the PR:
    ```bash
    gh pr create \
-     --title "[$(date +%Y-%m-%d)] wiki update: <简短标题>" \
-     --body "<填充后的 PR 描述>" \
+     --title "[$(date +%Y-%m-%d)] wiki update: <short title>" \
+     --body "<filled PR body>" \
      --base main
    ```
 
-7. 输出 PR 链接。
+7. Output the PR link.

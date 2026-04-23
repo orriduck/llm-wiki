@@ -1,38 +1,38 @@
 ---
 name: lizard
-description: 每日收工时运行，从今天所有 Claude 会话中蒸馏可复用的知识点，自动整理为原子笔记写入 wiki。适合在工作日结束时调用。
+description: End-of-day distillation. Reads today's Claude sessions, extracts reusable knowledge, and writes atomic notes into the configured llm-wiki-content repo.
 user-invocable: true
 allowed-tools: "Bash Read Write Glob Grep"
 argument-hint: "[topic-filter]"
 ---
 
-# Lizard — 每日知识蒸馏
+# Lizard — Daily Knowledge Distillation
 
-你是一个知识蒸馏专家。你的任务是：读取今天所有 Claude 会话的内容，提取其中有价值的、可复用的知识点，整理为符合 llm-wiki 规范的原子笔记。
+You are a knowledge distillation specialist. Your task is to read today's Claude session content, extract reusable knowledge, and organize it into atomic notes that follow the llm-wiki conventions.
 
-## 第一步：检测 wiki 路径并确保 git 就绪
+## Step 1: Resolve the content repository and verify git
 
-使用共享路径解析器获取安装路径：
+Use the shared resolver to find the `llm-wiki-content` checkout:
 
 ```bash
 python3 scripts/wiki_path.py
 ```
 
-将输出记为 `WIKI_PATH`，后续所有步骤都使用此路径。
+Treat the output as `WIKI_PATH`. Use this path for every later step.
 
-若找不到，告知用户设置 `LLM_WIKI_PATH` 或重新安装插件，然后停止。
+If it cannot be found, tell the user to run `/llm-wiki:setup` or set `LLM_WIKI_PATH` to their `llm-wiki-content` checkout, then stop.
 
-确保 git 仓库已初始化：
+Verify that the content repo is initialized and is not the plugin repo:
 
 ```bash
-if [ ! -d "<WIKI_PATH>/.git" ]; then
-  cd "<WIKI_PATH>" && git init && git remote add origin https://github.com/orriduck/llm-wiki.git && git fetch origin && git checkout -b main && git reset --mixed origin/main
-fi
+test -d "<WIKI_PATH>/.git" && test -d "<WIKI_PATH>/wiki" && test -f "<WIKI_PATH>/index.md" && test -f "<WIKI_PATH>/log.md"
 ```
 
-## 第二步：获取今日会话内容
+If validation fails, stop and ask the user to rerun `/llm-wiki:setup`. Do not initialize a new wiki inside the plugin install directory.
 
-运行以下命令提取今天所有 Claude 会话中的对话文本（跳过工具调用的噪音，只保留 human/assistant 消息）：
+## Step 2: Collect today's session content
+
+Run this command to extract human/assistant text from today's Claude sessions while skipping tool-call noise:
 
 ```bash
 python3 -c "
@@ -72,7 +72,7 @@ for f in sorted(files):
                 pass
         if session_msgs:
             rel = os.path.relpath(f, os.path.expanduser('~'))
-            results.append(f'=== 会话文件: ~/{rel} ===')
+            results.append(f'=== Session file: ~/{rel} ===')
             results.extend(session_msgs[:60])
     except:
         pass
@@ -80,73 +80,72 @@ for f in sorted(files):
 if results:
     print('\n'.join(results))
 else:
-    print('今日暂无 Claude 会话记录。')
+    print('No Claude sessions found for today.')
 "
 ```
 
-若没有找到任何会话，告知用户并停止。
+If no sessions are found, tell the user and stop.
 
-## 第三步：分析知识点
+## Step 3: Analyze knowledge points
 
-仔细阅读上述会话内容。你需要：
+Read the session content carefully. You need to:
 
-1. **识别知识点**：找出其中涉及的技术概念、工具用法、最佳实践、踩坑经验、决策依据等。过滤掉纯粹的个人私务、临时性指令、重复的闲聊。
-2. **去重归并**：同一个主题的多处提及合并为一个知识点。
-3. **评估价值**：只保留有复用价值的内容（"如何配置 X"、"Y 的工作原理"、"Z 的踩坑"等）。
+1. **Identify knowledge points**: technical concepts, tool usage, best practices, debugging lessons, decision rationale, and reusable patterns. Filter out purely personal tasks, temporary instructions, and repetitive chat.
+2. **Deduplicate and merge**: combine repeated mentions of the same topic.
+3. **Assess value**: keep only reusable knowledge such as "how to configure X", "how Y works", or "pitfalls with Z".
 
-若用户传入了 `$ARGUMENTS`（topic-filter），只处理与该主题相关的知识点。
+If the user provided `$ARGUMENTS` as a topic filter, process only matching knowledge points.
 
-## 第四步：读取现有 wiki 索引
+## Step 4: Read the existing wiki index
 
 ```bash
 cat "<WIKI_PATH>/index.md"
 ```
 
-对于每个知识点，判断：
-- 是否已有对应的 wiki 页面？
-- 现有页面是否需要补充/更新？
+For each knowledge point, decide:
+- Is there already a matching wiki page?
+- Should an existing page be updated?
 
-## 第五步：写入原子笔记
+## Step 5: Write atomic notes
 
-对于每个知识点：
+For each knowledge point:
 
-**若需新建页面**：在 `<WIKI_PATH>/wiki/` 创建新 markdown 文件。
+**If a new page is needed**: create a Markdown file under `<WIKI_PATH>/wiki/`.
 
-文件命名规则：英文 kebab-case，如 `docker-multi-stage-build.md`。
+Filename rule: English kebab-case, for example `docker-multi-stage-build.md`.
 
-页面内容必须遵循 `CLAUDE.md`：优先使用 English first, Chinese second 的双语格式，并遵守隐私脱敏规则。
+Page content must follow `CLAUDE.md`: prefer English first, Chinese second bilingual structure, and follow privacy-scrubbing rules.
 
-**若需更新现有页面**：读取页面后在合适的位置追加或修改内容，保持风格一致。
+**If updating an existing page**: read it first, then append or modify content in the right place while preserving style.
 
-## 第六步：更新 index.md 和 log.md
+## Step 6: Update index.md and log.md
 
-**index.md**：在对应分类下追加或更新页面条目。
+**index.md**: add or update page entries under the matching category.
 
-**log.md**：在文件开头追加一条日志：
+**log.md**: prepend a log entry:
 ```
-## [YYYY-MM-DD] lizard | 蒸馏今日 N 个会话，新增 X 页，更新 Y 页
+## [YYYY-MM-DD] lizard | distilled N sessions, created X pages, updated Y pages
 ```
 
-## 第七步：自动 commit 并 push
+## Step 7: Commit to the content repository
 
-笔记写入完成后：
+After writing notes:
 
 ```bash
-cd "<WIKI_PATH>" && git add wiki/ index.md log.md skills/ scripts/ AGENTS.md && git status --short
+cd "<WIKI_PATH>" && git add wiki/ index.md log.md && git status --short
 ```
 
-若有变更，commit 并 push：
+If there are changes, commit to the current branch:
 
 ```bash
 cd "<WIKI_PATH>" && \
-  git commit -m "lizard: $(date +%Y-%m-%d) 蒸馏 N 个会话，新增 X 页，更新 Y 页" && \
-  git push origin main
+  git commit -m "lizard: $(date +%Y-%m-%d) distilled N sessions, created X pages, updated Y pages"
 ```
 
-将 commit message 中的 N/X/Y 替换为实际数字。
+Replace N/X/Y with the actual counts.
 
-若 push 失败，告知用户检查 git remote 或插件安装状态。
+Do not push directly to `main`. If the user wants to publish, tell them to run `/llm-wiki:wiki-push` and `/llm-wiki:wiki-pr` so the content branch opens a PR against `llm-wiki-content`.
 
-## 完成后
+## Completion
 
-简要汇报：新建了哪些页面、更新了哪些页面，以及有哪些知识点因内容不够充实而未单独建页（可以提示用户后续补充）。
+Briefly report created pages, updated pages, and knowledge points that were not substantial enough for their own page.
