@@ -1,27 +1,29 @@
 ---
 name: wiki-search
-description: 在 llm-wiki 中搜索相关内容
+description: Search the configured llm-wiki-content repository.
 user-invocable: true
 allowed-tools: "Bash Read Glob Grep"
-argument-hint: "<搜索关键词>"
+argument-hint: "<query>"
 ---
 
-# Wiki 搜索
+# Wiki Search
 
-## 第一步：检测 wiki 路径
+## Step 1: Resolve the wiki path
 
 ```bash
 python3 scripts/wiki_path.py
 ```
 
-## 第二步：执行搜索
+If it cannot be found, tell the user to run `/llm-wiki:setup` or set `LLM_WIKI_PATH` to their `llm-wiki-content` checkout.
+
+## Step 2: Run search
 
 ```bash
 python3 scripts/wiki_search.py "$ARGUMENTS"
 ```
 
-## 第三步：整理结果
+## Step 3: Summarize results
 
-基于搜索结果，读取最相关页面并总结。
+Read the most relevant pages from the search results and summarize them.
 
-若无结果，提示用户创建新知识（lizard / lizard-eat）。
+If there are no results, suggest creating new knowledge with `lizard` or `lizard-eat`.

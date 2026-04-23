@@ -1,41 +1,48 @@
 ---
-description: 将今日 wiki 更新（wiki/、index.md、log.md）暂存、提交并推送到远程。会自动从变更文件列表生成 commit message。
+description: Stage, commit, and push wiki updates from llm-wiki-content on the current content branch. Generates a commit message from changed files.
 ---
 
-将 llm-wiki 的本地变更提交并推送到远程仓库。
+Commit and push local `llm-wiki-content` changes to the remote repository.
 
-## 步骤
+## Steps
 
-1. 进入 wiki 仓库目录：
+1. Resolve and enter the content repo:
    ```bash
+   WIKI_REPO_PATH="$(python3 scripts/wiki_path.py)"
    cd "${WIKI_REPO_PATH}"
    ```
-   若 `$WIKI_REPO_PATH` 未设置，提示用户先运行 `/setup`，然后停止。
+   If resolution fails, tell the user to run `/llm-wiki:setup`, then stop.
 
-2. 检查是否有变更：
+2. Check for changes:
    ```bash
    git status --short
    ```
-   若没有任何变更，告知用户"无变更需要提交"，停止。
+   If there are no changes, say "no changes to commit" and stop.
 
-3. 查看变更文件列表，生成 commit message：
-   - 格式：`[YYYY-MM-DD] wiki update: <新增/修改的页面名（逗号分隔，最多 3 个，超出则写 "等 N 页"）>`
-   - 例：`[2026-04-16] wiki update: Docker多阶段构建, Rust所有权模型, 等 2 页`
+3. Confirm the current branch is not `main` or `master`:
+   ```bash
+   git branch --show-current
+   ```
+   If on `main` or `master`, ask the user to switch to a content branch and stop.
 
-4. 暂存 wiki 相关文件：
+4. Inspect changed files and generate a commit message:
+   - Format: `[YYYY-MM-DD] wiki update: <new/updated page names, comma-separated, max 3; use "and N more" for extras>`
+   - Example: `[2026-04-16] wiki update: Docker multi-stage builds, Rust ownership, and 2 more`
+
+5. Stage wiki content files:
    ```bash
    git add wiki/ index.md log.md
    ```
-   若有其他需要一并提交的文件（如 `.claude/` 下的配置），也一起暂存。
+   Do not stage plugin repository files such as `skills/`, `scripts/`, or `commands/`. Those belong to `llm-wiki`, not `llm-wiki-content`.
 
-5. 提交：
+6. Commit:
    ```bash
-   git commit -m "<生成的 commit message>"
+   git commit -m "<generated commit message>"
    ```
 
-6. 推送到当前分支：
+7. Push the current branch:
    ```bash
    git push -u origin "$(git branch --show-current)"
    ```
 
-7. 汇报推送结果，包括推送到的远程分支名。
+8. Report the pushed remote branch.

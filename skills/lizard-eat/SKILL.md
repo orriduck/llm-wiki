@@ -1,54 +1,58 @@
 ---
 name: lizard-eat
-description: 给定一个 URL 和主题，自动抓取页面内容，整理为详尽的 wiki 原子笔记（附原始来源引用）。
+description: Given a URL and topic, fetch the source and turn it into detailed atomic wiki notes with source citations.
 user-invocable: true
 allowed-tools: "Bash Read Write WebFetch Glob Grep"
 argument-hint: "<url> <topic>"
 ---
 
-# Lizard Eat — 外部资料摄取
+# Lizard Eat — External Source Ingest
 
-## 第一步：解析参数
+## Step 1: Parse arguments
 
-解析 `$ARGUMENTS` 得到 URL 和 TOPIC。
+Parse `$ARGUMENTS` into URL and TOPIC.
 
-## 第二步：检测 wiki 路径
+## Step 2: Resolve the content repository
 
 ```bash
 python3 scripts/wiki_path.py
 ```
 
-将输出记为 `WIKI_PATH`。
+Treat the output as `WIKI_PATH`. It must be the `llm-wiki-content` checkout, not the plugin install directory.
 
-## 第三步：抓取 URL 内容
+If it cannot be found, tell the user to run `/llm-wiki:setup` or set `LLM_WIKI_PATH` to their `llm-wiki-content` checkout, then stop.
 
-使用 WebFetch 获取页面内容。
+## Step 3: Fetch the URL
 
-## 第四步：读取现有 wiki 索引
+Use WebFetch to fetch the page content.
+
+## Step 4: Read the existing wiki index
 
 ```bash
 cat "<WIKI_PATH>/index.md"
 ```
 
-## 第五步：整理原子笔记
+## Step 5: Create atomic notes
 
-遵循 `CLAUDE.md` schema：
+Follow the `CLAUDE.md` schema:
 - English first, Chinese second
-- 去敏感信息
-- 强结构化
+- scrub sensitive information
+- use strong structure
 
-## 第六步：写入文件
+## Step 6: Write files
 
-写入 `<WIKI_PATH>/wiki/`。
+Write notes under `<WIKI_PATH>/wiki/`.
 
-## 第七步：更新 index.md 和 log.md
+## Step 7: Update index.md and log.md
 
-## 第八步：commit 并 push
+## Step 8: Commit to the content repository
 
 ```bash
-cd "<WIKI_PATH>" && git add wiki/ index.md log.md scripts/ AGENTS.md && git commit -m "lizard-eat: <TOPIC>" && git push origin main
+cd "<WIKI_PATH>" && git add wiki/ index.md log.md && git commit -m "lizard-eat: <TOPIC>"
 ```
 
-## 完成
+Do not push directly to `main`. If the user wants to publish, tell them to run `/llm-wiki:wiki-push` and `/llm-wiki:wiki-pr` so the content branch opens a PR against `llm-wiki-content`.
 
-输出变更摘要。
+## Completion
+
+Output a concise change summary.

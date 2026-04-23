@@ -28,7 +28,9 @@ wiki 是一个不断增值的资产——每新增一个来源、每问一个好
 #### 前提条件
 
 - [Claude Code](https://claude.ai/code) CLI 已安装并登录
-- [Obsidian](https://obsidian.md)（可选，用于浏览 wiki）
+- [Obsidian](https://obsidian.md) 已安装（推荐，用于浏览 wiki）
+- Git 已配置 GitHub 访问权限
+- `gh` CLI（可选，用于创建 PR）
 
 #### 步骤
 
@@ -40,11 +42,37 @@ wiki 是一个不断增值的资产——每新增一个来源、每问一个好
 /reload-plugins
 ```
 
-完成。无需 clone 仓库，无需配置环境变量。插件安装后 wiki 内容直接存储在插件目录中，所有 skill 会自动检测路径。
+完成后，你已经安装了工具插件。下一步需要连接你的内容仓库。
+
+#### 首次设置内容仓库
+
+在新电脑上，先安装并打开一次 Obsidian，让 iCloud Drive 创建 Obsidian 文件夹。然后运行：
+
+```
+/llm-wiki:setup
+```
+
+默认会把内容仓库 clone 到：
+
+```
+~/Library/Mobile Documents/iCloud~md~obsidian/Documents/llm-wiki-content
+```
+
+并写入：
+
+```
+~/.llm-wiki/config.json
+```
+
+之后所有 skill 都会通过这个配置找到 `llm-wiki-content`。如果你想使用自己的仓库或路径：
+
+```
+/llm-wiki:setup git@github.com:orriduck/llm-wiki-content.git "/path/to/llm-wiki-content"
+```
 
 **用 Obsidian 打开**（可选）
 
-插件安装路径为 `~/.claude/plugins/cache/llm-wiki/llm-wiki/<version>/`，将该目录作为 Obsidian vault 打开，即可在图谱视图中看到所有页面的连接关系。
+将 `llm-wiki-content` checkout 目录作为 Obsidian vault 打开，即可在图谱视图中看到所有页面的连接关系。插件目录只是工具，不是 vault。
 
 ### 日常使用
 
@@ -54,7 +82,7 @@ wiki 是一个不断增值的资产——每新增一个来源、每问一个好
 /llm-wiki:lizard
 ```
 
-自动扫描今天所有 Claude 会话的 transcript，提取有价值的知识点，整理为原子笔记写入 `wiki/`，更新 `index.md` 和 `log.md`，并自动 commit + push。
+自动扫描今天所有 Claude 会话的 transcript，提取有价值的知识点，整理为原子笔记写入 `llm-wiki-content/wiki/`，更新 `index.md` 和 `log.md`，并 commit 到当前内容分支。
 
 支持按主题过滤：
 
@@ -94,6 +122,11 @@ wiki 是一个不断增值的资产——每新增一个来源、每问一个好
 
 基于 `templates/pr-template.md` 自动填充 PR 描述（日期、新增/更新页面、知识摘要），用 `gh` 创建 PR。
 
+### 双仓库模型
+
+- `llm-wiki`：插件、skills、commands、agents、脚本。可重新安装，是工具仓库。
+- `llm-wiki-content`：真正的 Obsidian vault 和笔记内容。应 clone 到 iCloud Drive / Obsidian 文件夹，并通过 PR 发布。
+
 ### 仓库结构
 
 ```
@@ -105,19 +138,31 @@ llm-wiki/
 │   └── pull_request_template.md # PR 模板
 ├── agents/
 │   └── wiki-curator.md # 批量操作 agent（模型：sonnet）
-├── wiki/              # LLM 生成并维护的 wiki 页面
-├── index.md           # 所有页面的索引，按分类组织
-├── log.md             # 操作日志（ingest、query、lint 记录）
-├── CLAUDE.md          # Schema：告诉 LLM wiki 的规范和工作流
 ├── skills/            # Claude Code skills
-│   ├── lizard/        # 每日知识蒸馏（自动 push）
+│   ├── lizard/        # 每日知识蒸馏（commit 到内容分支）
 │   ├── lizard-eat/    # 从外部 URL 摄取知识
 │   └── wiki-search/   # wiki 搜索
 ├── commands/          # Claude Code commands
+│   ├── setup.md       # 连接/clone llm-wiki-content
 │   ├── wiki-push.md   # 提交推送
 │   └── wiki-pr.md     # 创建 PR
+├── scripts/
+│   ├── setup_wiki.py  # 首次设置内容仓库
+│   ├── wiki_path.py   # 解析内容仓库路径
+│   └── wiki_search.py # 搜索内容仓库
 └── templates/
     └── pr-template.md # PR 描述模板
+```
+
+内容仓库结构：
+
+```
+llm-wiki-content/
+├── .obsidian/         # Obsidian vault 配置
+├── wiki/              # LLM 生成并维护的 wiki 页面
+├── index.md           # 所有页面的索引，按分类组织
+├── log.md             # 操作日志
+└── README.md          # 内容仓库说明
 ```
 
 ---
@@ -146,7 +191,9 @@ The wiki is a compounding asset — every source you add and every good question
 #### Prerequisites
 
 - [Claude Code](https://claude.ai/code) CLI installed and logged in
-- [Obsidian](https://obsidian.md) (optional, for browsing the wiki)
+- [Obsidian](https://obsidian.md) installed (recommended for browsing the wiki)
+- Git configured with GitHub access
+- `gh` CLI (optional, for creating PRs)
 
 #### Steps
 
@@ -158,11 +205,37 @@ Run three commands inside Claude Code:
 /reload-plugins
 ```
 
-That's it. No cloning, no environment variables. The plugin auto-detects its own path — all skills work immediately.
+This installs the tooling plugin.
+
+#### First-time content setup
+
+On a new computer, install and open Obsidian once first so iCloud Drive creates the Obsidian folder. Then run:
+
+```
+/llm-wiki:setup
+```
+
+By default, setup clones the content repo to:
+
+```
+~/Library/Mobile Documents/iCloud~md~obsidian/Documents/llm-wiki-content
+```
+
+and writes:
+
+```
+~/.llm-wiki/config.json
+```
+
+After that, all skills resolve `llm-wiki-content` through this config. To use a custom repo or path:
+
+```
+/llm-wiki:setup git@github.com:orriduck/llm-wiki-content.git "/path/to/llm-wiki-content"
+```
 
 **Open in Obsidian** (optional)
 
-The plugin installs to `~/.claude/plugins/cache/llm-wiki/llm-wiki/<version>/`. Open that directory as an Obsidian vault to browse the wiki graph view.
+Open the `llm-wiki-content` checkout as your Obsidian vault. The plugin directory is tooling only, not the vault.
 
 ### Daily workflow
 
@@ -172,7 +245,7 @@ The plugin installs to `~/.claude/plugins/cache/llm-wiki/llm-wiki/<version>/`. O
 /llm-wiki:lizard
 ```
 
-Scans all today's Claude session transcripts, extracts reusable knowledge, writes atomic notes to `wiki/`, updates `index.md` and `log.md`, then auto-commits and pushes.
+Scans all today's Claude session transcripts, extracts reusable knowledge, writes atomic notes to `llm-wiki-content/wiki/`, updates `index.md` and `log.md`, then commits to the current content branch.
 
 Filter by topic:
 
@@ -212,6 +285,11 @@ Auto-generates a commit message, stages wiki-related files, pushes to remote.
 
 Fills in the PR template with date, new/updated pages, and a knowledge summary, then creates the PR via `gh`.
 
+### Two-Repository Model
+
+- `llm-wiki`: plugin, skills, commands, agents, and scripts. It is reinstallable tooling.
+- `llm-wiki-content`: the actual Obsidian vault and note content. Clone this into iCloud Drive / Obsidian and publish through PRs.
+
 ### Repository structure
 
 ```
@@ -223,17 +301,29 @@ llm-wiki/
 │   └── pull_request_template.md # PR template
 ├── agents/
 │   └── wiki-curator.md # Bulk operations agent (model: sonnet)
-├── wiki/              # LLM-generated and maintained wiki pages
-├── index.md           # Index of all pages, organized by category
-├── log.md             # Operation log (ingest, query, lint entries)
-├── CLAUDE.md          # Schema: tells the LLM the wiki's conventions and workflows
 ├── skills/            # Claude Code skills
-│   ├── lizard/        # Daily knowledge distillation (auto-push)
+│   ├── lizard/        # Daily knowledge distillation (commit to content branch)
 │   ├── lizard-eat/    # Ingest knowledge from a URL
 │   └── wiki-search/   # Wiki search
 ├── commands/          # Claude Code commands
+│   ├── setup.md       # Connect/clone llm-wiki-content
 │   ├── wiki-push.md   # Commit and push
 │   └── wiki-pr.md     # Create PR
+├── scripts/
+│   ├── setup_wiki.py  # First-time content setup
+│   ├── wiki_path.py   # Resolve content repo path
+│   └── wiki_search.py # Search content repo
 └── templates/
     └── pr-template.md # PR description template
+```
+
+Content repository structure:
+
+```
+llm-wiki-content/
+├── .obsidian/         # Obsidian vault settings
+├── wiki/              # LLM-generated and maintained wiki pages
+├── index.md           # Index of all pages, organized by category
+├── log.md             # Operation log
+└── README.md          # Content repo documentation
 ```
