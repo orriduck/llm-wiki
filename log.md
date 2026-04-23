@@ -22,6 +22,19 @@ Ingested Datadog's official Grok parsing documentation, regex guidance, and quer
 
 ---
 
+## [2026-04-22] codex | 根据反馈改写蒸馏主题：Outerbounds branch resolution + CircleCI orb 文件结构
+
+根据用户反馈（不需要泛化“聊天蒸馏方法”，而是聚焦两个具体技术主题），删除泛化页面并改为两篇专题页：Outerbounds 分支解析机制、CircleCI Orb 文件结构与发布流程。
+
+**创建页面：**
+- `wiki/metaflow/Outerbounds-Branch-Resolution.md` — `--production`/`--branch` 命名空间映射、CI 分支解析优先级、错误模式与防护
+- `wiki/engineering/CircleCI-Orb文件结构.md` — Orb 目录分层（`src/`/`dist/`）、职责划分、打包校验发布流程、版本晋升策略
+
+**删除页面：**
+- `wiki/engineering/ChatGPT技术方案蒸馏笔记法.md` — 主题与用户诉求不匹配，已移除
+
+---
+
 ## [2026-04-20] lizard | 蒸馏今日 3 个会话，新增 2 页，更新 0 页
 
 从 MLOPS-972 开发会话中蒸馏知识点。涵盖 Metaflow 内部架构：pre-run 生命周期三阶段、FlowMutator 开发模式（只读静态分析）、打包文件选择机制（MetaflowPackage vs MetaflowCodeContentV1）。

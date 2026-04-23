@@ -12,23 +12,15 @@ argument-hint: "[topic-filter]"
 
 ## 第一步：检测 wiki 路径并确保 git 就绪
 
-从 `~/.claude/plugins/installed_plugins.json` 自动获取安装路径：
+使用共享路径解析器获取安装路径：
 
 ```bash
-python3 -c "
-import json, os
-p = os.path.expanduser('~/.claude/plugins/installed_plugins.json')
-data = json.load(open(p))
-for key, entries in data.get('plugins', {}).items():
-    if 'llm-wiki' in key:
-        print(entries[-1]['installPath'])
-        break
-"
+python3 scripts/wiki_path.py
 ```
 
 将输出记为 `WIKI_PATH`，后续所有步骤都使用此路径。
 
-若找不到，告知用户重新安装插件，然后停止。
+若找不到，告知用户设置 `LLM_WIKI_PATH` 或重新安装插件，然后停止。
 
 确保 git 仓库已初始化：
 
@@ -122,35 +114,13 @@ cat "<WIKI_PATH>/index.md"
 
 文件命名规则：英文 kebab-case，如 `docker-multi-stage-build.md`。
 
-页面格式：
-```markdown
-# 页面标题（中文）
-
-> 来源：通过 lizard 从 Claude 会话蒸馏 · YYYY-MM-DD
-
-## 核心概念
-
-...
-
-## 关键细节
-
-...
-
-## 相关链接
-
-- [[相关页面]]
-```
+页面内容必须遵循 `CLAUDE.md`：优先使用 English first, Chinese second 的双语格式，并遵守隐私脱敏规则。
 
 **若需更新现有页面**：读取页面后在合适的位置追加或修改内容，保持风格一致。
 
-所有内容必须用**中文**编写（文件名和代码片段除外）。
-
 ## 第六步：更新 index.md 和 log.md
 
-**index.md**：在对应分类下追加新页面条目，格式：
-```
-- [[页面名]] — 一句话摘要
-```
+**index.md**：在对应分类下追加或更新页面条目。
 
 **log.md**：在文件开头追加一条日志：
 ```
@@ -162,7 +132,7 @@ cat "<WIKI_PATH>/index.md"
 笔记写入完成后：
 
 ```bash
-cd "<WIKI_PATH>" && git add wiki/ index.md log.md skills/ && git status --short
+cd "<WIKI_PATH>" && git add wiki/ index.md log.md skills/ scripts/ AGENTS.md && git status --short
 ```
 
 若有变更，commit 并 push：
@@ -175,7 +145,7 @@ cd "<WIKI_PATH>" && \
 
 将 commit message 中的 N/X/Y 替换为实际数字。
 
-若 push 失败，告知用户运行 `/llm-wiki:setup`。
+若 push 失败，告知用户检查 git remote 或插件安装状态。
 
 ## 完成后
 
